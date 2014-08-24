@@ -1,0 +1,47 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+body{
+	padding-top: 0px !important;
+}
+.bannernormal{
+	display:none;
+}
+.bannermobile{
+	max-width:320px;
+}
+.construction{
+	background-image:url('../img/bannerwinfo_mobile.jpg') !important;
+	background-size:100%;
+	background-repeat: no-repeat;
+	min-height: 580px !important;
+}
+
+ .hero-unit !important{
+ 
+ }
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 100% !important;
+}
+
+.hero-unit {
+  padding: 5px !important;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: white;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+
+
+
