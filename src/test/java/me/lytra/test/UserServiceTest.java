@@ -56,7 +56,11 @@ public class UserServiceTest {
 		User foo = userService.login("admin", "admin");
 		logger.info("foo");
 	}
-
+	@Test 
+	public void fooTest(){
+		String file = "iStock_000015201389Small.jpg";
+		logger.info("FileName: {}", file.split("\\.")[1]);
+	}
 /*	@Test
 	public void testCreateUser(){
 		User initialUser = new User("admin", "admin", new Date(), false, true);

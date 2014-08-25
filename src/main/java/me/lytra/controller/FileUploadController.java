@@ -3,6 +3,7 @@ package me.lytra.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLConnection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +28,16 @@ public class FileUploadController {
     public @ResponseBody String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file){
         if (!file.isEmpty()) {
             try {
+            	String extension = file.getOriginalFilename().split("\\.")[1];
+            	logger.info("Filename: {}", file.getName());
+            	logger.info("Filename: {}", extension);
+            	
                 byte[] bytes = file.getBytes();
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name + "." + extension)));
                 stream.write(bytes);
                 stream.close();
-                logger.info("You successfully uploaded " + name + " into " + name + "-uploaded !");
-                return "You successfully uploaded " + name + " into " + name + "-uploaded !";
+                logger.info("You successfully uploaded " + name + " into " + name + "." + extension);
+                return "You successfully uploaded " + name + " into " + name + "." + extension;
                 
             } catch (Exception e) {
             	logger.warn("You failed to upload " + name + " => " + e.getMessage());

@@ -24,11 +24,10 @@ public class DashboardController {
 
 	@RequestMapping
 	public ModelAndView handleRequestDashboard(HttpSession session) {
-		logger.info("Session: {}", session.getAttribute("USER_OBJECT"));
+		
 		if(session.getAttribute("USER_OBJECT") == null){
 			return new ModelAndView("redirect:/alpha");
 		}
-		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sb-admin/index");
@@ -36,19 +35,6 @@ public class DashboardController {
 		return mav;
 	}
 	
-	public void handleAuth(HttpSession session){
-	
-		
-	}
-	
-	@RequestMapping(value="/logout")
-	public String logout(HttpSession session) {
-		if(session != null){
-			session.invalidate();
-		}
-		return "redirect:/alpha";
-
-	}
 
 /*	@RequestMapping("/blog")
 	public ModelAndView handleRequestDashboardBlog() {
