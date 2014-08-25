@@ -10,6 +10,7 @@ import me.lytra.persistence.repository.UserRepository;
 import me.lytra.persistence.service.UserService;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -18,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,7 +48,7 @@ public class UserServiceTest {
 	@Test
 	public void findAll(){
 		
-		logger.info("STUFF: {}", userService.findAll());
+		logger.info("All users: {}", userService.findAll());
 	}
 	
 	@Test
@@ -61,12 +61,16 @@ public class UserServiceTest {
 		String file = "iStock_000015201389Small.jpg";
 		logger.info("FileName: {}", file.split("\\.")[1]);
 	}
-/*	@Test
+	@Ignore @Test
 	public void testCreateUser(){
 		User initialUser = new User("admin", "admin", new Date(), false, true);
 		User encryptedUser = userService.create(initialUser);
 		logger.info("initial: {}", initialUser);
+	}	
+	public void testCreateDeleteUser(){
+		User initialUser = new User("shouldNotExist", "shouldNotExist", new Date(), true, false);
+		User encryptedUser = userService.create(initialUser);
+		logger.info("initial: {}", initialUser);
+		userService.delete(encryptedUser);
 	}
-*/
-
 }
