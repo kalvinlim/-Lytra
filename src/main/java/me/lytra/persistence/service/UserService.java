@@ -9,7 +9,12 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.stereotype.Service;
+
+import com.mongodb.gridfs.GridFSDBFile;
 
 @Service
 public class UserService {
@@ -59,7 +64,9 @@ public class UserService {
 		User user = userRepository.findByUsername(username);
 		return user!=null;
 	}
-	
+	public User findById(String id){
+		return userRepository.findById(id);
+	}
 	/*static Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired

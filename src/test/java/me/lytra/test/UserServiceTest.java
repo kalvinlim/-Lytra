@@ -56,7 +56,12 @@ public class UserServiceTest {
 		User foo = userService.login("admin", "admin");
 		logger.info("foo");
 	}
-	@Test 
+	@Test
+	public void findByIdTest(){
+		//53f3b681e30e5fece0344420
+		logger.info("Searching by id: {}", userService.findById("53f3b681e30e5fece0344420"));
+	}
+	@Ignore @Test 
 	public void fooTest(){
 		String file = "iStock_000015201389Small.jpg";
 		logger.info("FileName: {}", file.split("\\.")[1]);

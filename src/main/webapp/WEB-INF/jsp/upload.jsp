@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,9 +24,18 @@
   </head>
   <body>
   	<div class="container">
+	  
+		foo
   		<div class="row>
   			<div class="col-md-12">
-				<form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="/upload">
+				<form:form commandName="user" class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="/upload">
+					
+					<form:select path="id">
+						<c:forEach items="${users}" var="u">
+							<form:option value="${u.id}">${u.username}</form:option>
+						</c:forEach>
+						
+					</form:select>
 					<input type="file" name="file">
 					
 					<div class="form-group">
@@ -44,21 +54,12 @@
 							</select>				
 						</div> 
 					</div>
-					<form:select path="user" items="${users}"></form:select>
+					
 					<!-- <input type="submit" value="Upload"> -->
 					<button type="submit" value="Upload" class="btn btn-danger">Upload</button>
-				</form>
-				<c:forEach items="${users}" var="u">
-					<div class="panel panel-danger">
-						<div> ${u.username}</div>
-						<div>${u.deleted}</div>
-						<div>${u.created}</div>
-						<div>${u.admin}</div>
-						<br />
-					</div>
-				</c:forEach>
+				</form:form>
 				
-				${users}
+			
 			</div>
 		</row>
 	</div>
