@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,18 +24,11 @@
   </head>
   <body>
   	<div class="container">
-	  
-		foo
   		<div class="row>
   			<div class="col-md-12">
 				<form:form commandName="user" class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="/upload">
 					
-					<form:select path="id">
-						<c:forEach items="${users}" var="u">
-							<form:option value="${u.id}">${u.username}</form:option>
-						</c:forEach>
-						
-					</form:select>
+					
 					<input type="file" name="file">
 					
 					<div class="form-group">
@@ -47,12 +40,12 @@
 					<div class="form-group">
 						<label for="name" class="col-md-1">Owner</label>
 						<div class="col-md-4">
-							<select class="form-control">
-								<c:forEach var="user" items="${users}">
-									<option>${user.username}</option>
+							<form:select path="id" class="form-control">
+								<c:forEach items="${users}" var="u">
+									<form:option value="${u.id}">${u.username}</form:option>
 								</c:forEach>
-							</select>				
-						</div> 
+							</form:select>
+						</div>
 					</div>
 					
 					<!-- <input type="submit" value="Upload"> -->
@@ -62,7 +55,7 @@
 			
 			</div>
 		</row>
-	</div>
+  	</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 

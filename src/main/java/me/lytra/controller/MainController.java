@@ -16,28 +16,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-//@Configuration
+
 @Controller
+@RequestMapping(value="/lytra")
 public class MainController {
 	static Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	@Autowired
 	private BlogService blogService;
 	
+	@Autowired 
+	private UserService userService;
 
-	
-    @RequestMapping(value="/", method=RequestMethod.GET)
-    public String index() {
-        return "index";
-    }
-	@RequestMapping(value="/test")
+/*	@RequestMapping(value="/test")
 	public ModelAndView test(HttpSession session, @ModelAttribute User user) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hello");
 		return mav;
 	}
 	
-	@RequestMapping(value="/alpha", method=RequestMethod.GET)
+*/	@RequestMapping(value="", method=RequestMethod.GET)
 	public ModelAndView handleRequest(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("alpha");
@@ -74,7 +72,8 @@ public class MainController {
 	@RequestMapping(value = "/json", produces = "application/json")
 	public @ResponseBody
 	String testfoo() {
-		return blogService.findAll().toString();
+		logger.info("Users: {}", blogService.findAll());
+		return userService.findAll().toString();
 	}
 
 }

@@ -5,27 +5,6 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 
 public class User {
-	
-	/*@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@Column(name="username")
-	private String username;
-	
-	@Column(name="password")
-	private String password;
-	
-	@Column(name="created")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created;
-	
-	@Column(name="deleted")
-	boolean deleted = false;
-	
-	@Column(name="admin")
-	boolean admin = false;*/
-
 	@Id
 	private String id;
 	

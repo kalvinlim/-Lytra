@@ -1,7 +1,10 @@
-package me.lytra.controller.blog;
+package me.lytra.controller.dashboard;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import me.lytra.domain.user.User;
 import me.lytra.persistence.service.BlogService;
 import me.lytra.persistence.service.UserService;
 
@@ -9,7 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -24,18 +32,38 @@ public class DashboardController {
 
 	@RequestMapping
 	public ModelAndView handleRequestDashboard(HttpSession session) {
-		
-		if(session.getAttribute("USER_OBJECT") == null){
-			return new ModelAndView("redirect:/alpha");
-		}
+		List<User> users = userService.findAll();
+/*		if(session.getAttribute("USER_OBJECT") == null){
+			return new ModelAndView("redirect:/lytra");
+		}*/
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("sb-admin/index");
-		mav.addObject("active", "dashboard");
+		mav.setViewName("dashboard");
+		mav.addObject("users", users);
+		mav.addObject("user", new User());
+		//mav.addObject("active", "dashboard2");
 		return mav;
 	}
 	
-
+    @RequestMapping(value="/createuser", method=RequestMethod.POST)
+    public String handleFileUpload(@ModelAttribute User user){
+    	if(user.getUsername() != null && user.getPassword() != null && user.getPassword().length() > 0){
+    		userService.create(user);
+    	}
+    	
+    	return "redirect:/dashboard";
+    }
+    @RequestMapping(value="/moduser", method=RequestMethod.POST)
+    public String handleFileUpload2(@ModelAttribute User user){
+    	logger.info("user mod: {}", user);	
+    	User result = userService.findById(user.getId());
+    	if(result != null){
+    		logger.info("user mod: {}, changes: {}", result, user);	
+    		
+    	}
+    	
+    	return "redirect:/dashboard";
+    }
 /*	@RequestMapping("/blog")
 	public ModelAndView handleRequestDashboardBlog() {
 		ModelAndView mav = new ModelAndView();

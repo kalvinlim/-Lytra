@@ -27,7 +27,7 @@
 				<li id="contacts" class="${active == 'contacts' ? 'active' : ''}"><a
 					href="#">Contacts</a></li>
 				<c:if test="${sessionScope.USER_OBJECT.admin == true}">
-					<li><a href="/dashboard/blog">Dashboard</a></li>
+					<li><a href="/dashboard">Dashboard</a></li>
 				</c:if>
 				<c:if test="${sessionScope.USER_OBJECT ne null}">
 					<li id="contacts" class="${active == 'contacts' ? 'active' : ''}"><a

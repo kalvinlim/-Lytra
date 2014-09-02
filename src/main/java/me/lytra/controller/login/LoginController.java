@@ -44,7 +44,7 @@ public class LoginController {
 		if(validUser!=null){
 			logger.info("User Authenticated: {}", validUser);
 			session.setAttribute("USER_OBJECT", validUser);
-			return "redirect:/alpha";
+			return "redirect:/lytra";
 		}
 		else {
 			return "noaccess";
