@@ -83,8 +83,6 @@ public class FileUploadController {
     }
 	@RequestMapping(value="/foo/{userId}")
 	public @ResponseBody void getPhoto2(HttpServletRequest request, HttpServletResponse response, @PathVariable String userId){
-		
-		
 		List<GridFSDBFile> result = gridFsService.getGridFSDBFilesByUserId(userId);
 		
 		logger.info("Retrieving photos, results: {}", result.size());
@@ -100,5 +98,32 @@ public class FileUploadController {
 			}
 		}
 	}
+	@RequestMapping(value="/photo/{photoId}")
+	public @ResponseBody void getPhotoByPhotoId(HttpServletRequest request, HttpServletResponse response, @PathVariable String photoId){
+		GridFSDBFile file = gridFsService.getGridFSDBFileByPhotoId(photoId);
+		
+		try {
+			response.getOutputStream().write(IOUtils.toByteArray(file.getInputStream()));
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@RequestMapping(value="/user/{userid}")
+	public @ResponseBody void getPhotoIdsByUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable String photoId){
+		GridFSDBFile file = gridFsService.getGridFSDBFileByPhotoId(photoId);
+		
+		try {
+			response.getOutputStream().write(IOUtils.toByteArray(file.getInputStream()));
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 }

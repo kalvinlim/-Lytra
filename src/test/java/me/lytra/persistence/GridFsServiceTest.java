@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
-import me.lytra.domain.user.User;
 import me.lytra.init.Application;
 import me.lytra.persistence.repository.UserRepository;
 
@@ -78,11 +77,28 @@ public class GridFsServiceTest {
 		}
 	}
 	
-	@Test
-	public void testGridFsRetrieve2(){
+	@Ignore @Test
+	public void testGridFsRetrieveByUserId(){
 		//List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.foo").is("Bar")));
+		String userid = "53ffe8ea8d598e24fa67d190";
+		List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid)));
 		
-		List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("_id").is("53f3b681e30e5fece034441d")));
+		logger.info("{}", result.size());
+		
+		for(GridFSDBFile file : result){
+			logger.info("{}", file.toString());
+			logger.info("{}", file.getId());
+			
+			logger.info("==========================================");
+		}
+	}
+	@Test
+	public void testGridFsRetrieveByPhotoId(){
+		//List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.foo").is("Bar")));
+		String photo1 = "540675d18d5940db8c78dca3";
+		String photo2 = "540672cd8d5940db8c78dca0";
+		
+		List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("_id").is(photo2)));
 		
 		logger.info("{}", result.size());
 		

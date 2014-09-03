@@ -1,6 +1,8 @@
 package me.lytra.persistence.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import me.lytra.domain.user.User;
@@ -55,10 +57,30 @@ public class GridFsService {
 	}
 	
 	public List<GridFSDBFile> getGridFSDBFilesByUserId(String id){
-		//List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.foo").is("Bar")));
-		
 		List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(id)));
-		
 		return result;
 	}
+	public GridFSDBFile getGridFSDBFileByPhotoId(String id){
+		GridFSDBFile result = operations.findOne(new Query().addCriteria(Criteria.where("_id").is(id)));
+		return result;
+	}
+	public List<String> getGridFSDBPhotoIdsByUserId(String userid){
+		
+		List<GridFSDBFile> files = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid)));
+		List<String> photoIds = new ArrayList<>();
+		
+		
+		for(GridFSDBFile file : files){
+			logger.info("{}", file.toString());
+			logger.info("{}", file.getId());			
+			logger.info("==========================================");
+			photoIds.add(file.getId().toString());
+		}
+		
+		if(photoIds.size() > 0){
+			return photoIds;
+		}
+		return Collections.emptyList();
+	}
+	
 }

@@ -11,8 +11,8 @@ public class User {
 	private String username;
 	private String password;
 	private Date created;
-	private boolean deleted = false;
-	private boolean admin = false;
+	private boolean deleted;
+	private boolean admin;
 	
 	public User(){}
 	

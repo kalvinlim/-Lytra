@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import me.lytra.domain.user.User;
 import me.lytra.persistence.service.BlogService;
+import me.lytra.persistence.service.GridFsService;
 import me.lytra.persistence.service.UserService;
 
 import org.slf4j.Logger;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.xml.internal.ws.developer.UsesJAXBContext;
+
 @Controller
 @RequestMapping("/dashboard")
 public class DashboardController {
@@ -29,6 +32,9 @@ public class DashboardController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private GridFsService gridFsService;
 
 	@RequestMapping
 	public ModelAndView handleRequestDashboard(HttpSession session) {
