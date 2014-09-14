@@ -42,8 +42,11 @@ public class LoginController {
 		logger.info("User: {}", user);
 		User validUser = userService.login(user.getUsername(), user.getPassword());
 		if(validUser!=null){
+			validUser.setPhotos(userService.getPhotoCountByUserId(validUser.getId()));
 			logger.info("User Authenticated: {}", validUser);
+			
 			session.setAttribute("USER_OBJECT", validUser);
+			session.setAttribute("USER_ID", validUser.getId());
 			return "redirect:/lytra";
 		}
 		else {

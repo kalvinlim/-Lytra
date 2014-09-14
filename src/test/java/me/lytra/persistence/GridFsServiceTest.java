@@ -7,6 +7,7 @@ import java.util.List;
 
 import me.lytra.init.Application;
 import me.lytra.persistence.repository.UserRepository;
+import me.lytra.persistence.service.GridFsService;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -39,6 +40,8 @@ public class GridFsServiceTest {
 	UserRepository userRepository;
 	
 	private static final Logger logger = LoggerFactory.getLogger(GridFsServiceTest.class);
+	
+	@Autowired GridFsService gridFsService;
 	
 	@Test
 	public void testBootstrapped() {
@@ -92,7 +95,7 @@ public class GridFsServiceTest {
 			logger.info("==========================================");
 		}
 	}
-	@Test
+	@Ignore @Test
 	public void testGridFsRetrieveByPhotoId(){
 		//List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.foo").is("Bar")));
 		String photo1 = "540675d18d5940db8c78dca3";
@@ -108,6 +111,19 @@ public class GridFsServiceTest {
 			
 			logger.info("==========================================");
 		}
+	}
+	@Ignore @Test
+	public void testGetGridFSDBPhotoIdsByUserId(){
+		String userid = "53ffe8ea8d598e24fa67d190";
+		logger.info("photo ids: {}", gridFsService.getGridFSDBPhotoIdsByUserId(userid));
+	}
+	@Test
+	public void testGetGridFSDBPhotoCountByUserId(){
+		String userid = "53ffe8ea8d598e24fa67d190";
+		Integer size = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))).size();
+		
+		logger.info("Size: {}", size);
+		 
 	}
 	
 }

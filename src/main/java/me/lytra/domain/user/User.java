@@ -3,6 +3,7 @@ package me.lytra.domain.user;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 public class User {
 	@Id
@@ -13,6 +14,9 @@ public class User {
 	private Date created;
 	private boolean deleted;
 	private boolean admin;
+	
+	@Transient
+	private Integer photos;
 	
 	public User(){}
 	
@@ -47,6 +51,9 @@ public class User {
 	public boolean isAdmin() {
 		return admin;
 	}
+	public Integer getPhotos() {
+		return photos;
+	}
 
 	public void setId(String id) {
 		this.id = id;
@@ -72,12 +79,15 @@ public class User {
 		this.admin = admin;
 	}
 
+	public void setPhotos(Integer photos) {
+		this.photos = photos;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password="
-				+ password + ", created=" + created + ", deleted=" + deleted
-				+ ", admin=" + admin + "]";
-	}	
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", created=" + created + ", deleted=" + deleted + ", admin=" + admin + ", photos=" + photos + "]";
+	}
+
 	
 	
 }

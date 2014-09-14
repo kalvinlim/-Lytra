@@ -2,6 +2,8 @@ package me.lytra.controller.dashboard;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import me.lytra.domain.user.User;
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +41,7 @@ public class DashboardController {
 
 	@RequestMapping
 	public ModelAndView handleRequestDashboard(HttpSession session) {
-		List<User> users = userService.findAll();
+		List<User> users = userService.findAllWithGalleryCount();
 /*		if(session.getAttribute("USER_OBJECT") == null){
 			return new ModelAndView("redirect:/lytra");
 		}*/
@@ -47,7 +50,10 @@ public class DashboardController {
 		mav.setViewName("dashboard");
 		mav.addObject("users", users);
 		mav.addObject("user", new User());
-		//mav.addObject("active", "dashboard2");
+		
+		
+
+
 		return mav;
 	}
 	
@@ -70,6 +76,18 @@ public class DashboardController {
     	
     	return "redirect:/dashboard";
     }
+    
+	@RequestMapping(value="/user/{userid}")
+	public ModelAndView getPhotoIdsByUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable String userid){
+		logger.info("userid: {}", userid);
+		List<String> fileIdList = gridFsService.getGridFSDBPhotoIdsByUserId(userid);
+		//53ffe8ea8d598e24fa67d190
+		ModelAndView mav = new ModelAndView("userphotos");
+		
+		mav.addObject("files", fileIdList);
+
+		return mav;
+	}
 /*	@RequestMapping("/blog")
 	public ModelAndView handleRequestDashboardBlog() {
 		ModelAndView mav = new ModelAndView();

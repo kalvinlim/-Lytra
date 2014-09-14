@@ -111,19 +111,7 @@ public class FileUploadController {
 			e.printStackTrace();
 		}
 	}
-	@RequestMapping(value="/user/{userid}")
-	public @ResponseBody void getPhotoIdsByUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable String photoId){
-		GridFSDBFile file = gridFsService.getGridFSDBFileByPhotoId(photoId);
-		
-		try {
-			response.getOutputStream().write(IOUtils.toByteArray(file.getInputStream()));
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 
 }

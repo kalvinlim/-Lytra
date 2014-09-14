@@ -21,18 +21,16 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<!-- <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script> --> 
 
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css" href="css/demo.css" /> 
-<link rel="stylesheet" type="text/css" href="css/style3.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/css/demo.css" /> --> 
+<link rel="stylesheet" type="text/css" href="/css/style3.css" />
 
-<link rel="stylesheet" type="text/css" href="css/slider/style.css" />
-<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slider/style.css" />
+<script type="text/javascript" src="/js/modernizr.custom.86080.js"></script>
 </head>
 
 

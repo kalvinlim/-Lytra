@@ -12,8 +12,7 @@
 			<a class="navbar-brand" href="/alpha">Lytra</a>
 		</div>
 		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-
+			<ul class="nav navbar-nav">				
 				<li id="home" class="${active == 'home' ? 'active' : ''}"><a
 					href="/alpha">Home</a></li>
 				<li id="about" class="${active == 'about' ? 'active' : ''}"><a
@@ -31,11 +30,11 @@
 				</c:if>
 				<c:if test="${sessionScope.USER_OBJECT ne null}">
 					<li id="contacts" class="${active == 'contacts' ? 'active' : ''}"><a
-						href="#">My Photos</a></li>
+						href="/lytra/photos">My Photos</a></li>
 				</c:if>
 			</ul>
 			<ul class="nav navbar-nav">
-				<c:if test="${sessionScope.USER_OBJECT ne null}">
+				<c:if test="${sessionScope.USER_OBJECT.photos > 0}">
 					<li><a href="#">Logged in as:
 							${sessionScope.USER_OBJECT.username}</a></li>
 					<li class="active"><a href="/logout">Logout</a></li>

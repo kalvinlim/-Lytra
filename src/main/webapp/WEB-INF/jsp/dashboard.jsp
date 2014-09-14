@@ -76,6 +76,7 @@ body {
 				<table class="table table-striped table-bordered">
 					<tr>
 						<th>Username</th>
+						<th>Photos</th>
 						<th>created</th>
 						<th>deleted</th>
 						<th>admin</th>
@@ -95,38 +96,28 @@ body {
 								<input type="text" value="${u.deleted}" class="deleted hidden">
 								<input type="text" value="${u.admin}" class="admin hidden">
 							</th>
+							<th>
+								<c:choose>
+									<c:when test="${u.photos > 0}">     
+										<button type="button" class="btn btn-primary btn-xs">View Photos (${u.photos})</button>       									
+   									 </c:when>
+									
+									<c:otherwise>
+       									 No Photos
+   									</c:otherwise>
+								</c:choose>
+								
+							</th>
 							<th>${u.created}</th>
 							<th>${u.deleted}</th>
 							<th>${u.admin}</th>
 						</tr>
 					</c:forEach>
 				</table>
+				
+				<button class="btn btn-warning" data-toggle="modal" data-target="#createuser">Add User</button>
 				<div class="col-md-4">
-					<div class="panel panel-default">
-						<div class="panel-heading">Add User</div>
-						<div class="panel-body">
-							<form:form class="form-horizontal" role="form" method="POST" action="/dashboard/createuser" commandName="user">	
-								<div class="form-group">		
-									<label for="username" class="col-md-3">username</label>
-									<div class="col-md-9">
-										<form:input path="username" class="form-control" id="username" placeholder="username"/>
-									</div>
-								</div>
-								<div class="form-group">		
-									<label for="password" class="col-md-3">password</label>
-									<div class="col-md-9">
-										<form:input path="password" class="form-control" id="password" placeholder="password"/>
-									</div>
-								</div>
-								<div class="form-group">	
-									<div class="col-md-3 col-md-offset-3">
-										<button type="submit" class="btn btn-danger">Create User</button>
-									</div>
-								</div>
-								
-							</form:form>
-						</div>
-					</div>
+					
 				</div>
 				<!----------------------------------------------------------------------------------->
 
@@ -179,8 +170,47 @@ body {
 						</div>
 					</div>
 				</c:forEach>
-				<!----------------------------------------------------------------------------------->
-				 
+				
+				<!-------------------------- create user modal -------------------------------->
+				<div class="modal fade" id="createuser" tabindex="-1"
+					role="dialog" aria-labelledby="createuser" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Edit User</h4>
+							</div>
+							<div class="modal-body">
+								<form:form class="form-horizontal" role="form" method="POST"
+									action="/dashboard/createuser" commandName="user">
+									<div class="form-group">
+										<label for="username" class="col-md-3">username</label>
+										<div class="col-md-9">
+											<form:input path="username" class="form-control"
+												id="username" placeholder="username" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="password" class="col-md-3">password</label>
+										<div class="col-md-9">
+											<form:input path="password" class="form-control"
+												id="password" placeholder="password" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-3 col-md-offset-3">
+											<button type="submit" class="btn btn-danger">Create
+												User</button>
+										</div>
+									</div>
+								</form:form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!---------------------------------------------------------------------------->
 			</div>
 		</div>
 

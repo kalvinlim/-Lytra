@@ -71,9 +71,9 @@ public class GridFsService {
 		
 		
 		for(GridFSDBFile file : files){
-			logger.info("{}", file.toString());
-			logger.info("{}", file.getId());			
-			logger.info("==========================================");
+			//logger.info("{}", file.toString());
+			//logger.info("{}", file.getId());			
+			//logger.info("==========================================");
 			photoIds.add(file.getId().toString());
 		}
 		
@@ -81,6 +81,12 @@ public class GridFsService {
 			return photoIds;
 		}
 		return Collections.emptyList();
+	}	
+	public int getGridFSDBPhotoCountByUserId(String userid){
+		Integer count = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))).size();
+		logger.info("searching for files with userID: {}", userid);
+		logger.info("found: {}", operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))));
+		return count;
 	}
 	
 }

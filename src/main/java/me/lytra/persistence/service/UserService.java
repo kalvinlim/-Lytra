@@ -26,8 +26,22 @@ public class UserService {
 	@Autowired 
 	private JBCryptService jbCryptService;
 	
+	@Autowired
+	private GridFsService gridFsService;
+	
 	public List<User> findAll(){
 		return userRepository.findAll();
+	}
+	public List<User> findAllWithGalleryCount(){
+		List<User> users = userRepository.findAll();
+		for(User user : users){
+			Integer count = gridFsService.getGridFSDBPhotoCountByUserId(user.getId());
+			user.setPhotos(count);
+		}
+		return users;
+	}
+	public Integer getPhotoCountByUserId(String userid){
+		return gridFsService.getGridFSDBPhotoCountByUserId(userid);
 	}
 	public User create(User user){
 		String hashedPassword = jbCryptService.hashPassword(user.getPassword());

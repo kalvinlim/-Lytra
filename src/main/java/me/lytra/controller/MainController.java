@@ -1,9 +1,12 @@
 package me.lytra.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import me.lytra.domain.user.User;
 import me.lytra.persistence.service.BlogService;
+import me.lytra.persistence.service.GridFsService;
 import me.lytra.persistence.service.UserService;
 
 import org.slf4j.Logger;
@@ -27,7 +30,9 @@ public class MainController {
 	
 	@Autowired 
 	private UserService userService;
-
+	
+	@Autowired
+	private GridFsService gridFsService;
 /*	@RequestMapping(value="/test")
 	public ModelAndView test(HttpSession session, @ModelAttribute User user) {
 		ModelAndView mav = new ModelAndView();
@@ -66,6 +71,17 @@ public class MainController {
 		mav.setViewName("blog");
 		mav.addObject("posts", blogService.findAll());
 		mav.addObject("active", "blog");
+		return mav;
+	}
+	@RequestMapping(value="/photos", method=RequestMethod.GET)
+	public ModelAndView handleRequestPhotos(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("photos");
+		String userid = session.getAttribute("USER_ID").toString();
+		List<String> fileIdList = gridFsService.getGridFSDBPhotoIdsByUserId(userid);
+		
+		mav.addObject("files", fileIdList);
+
 		return mav;
 	}
 

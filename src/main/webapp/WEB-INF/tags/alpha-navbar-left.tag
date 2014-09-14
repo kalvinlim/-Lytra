@@ -3,7 +3,7 @@
 <!-- sidebar -->
 		<div class="column col-sm-2 opaqueOff" id="sidebar">
 			<ul class="nav">
-				<li><img src="img/alpha/logo.png" class="img-responsive" alt="Responsive image" /></li>
+				<li><img src="/img/alpha/logo.png" class="img-responsive" alt="Responsive image" /></li>
 				<li>
 					<div class="text-center opaqueOff">
 						<h2>(513) 445 - 9872</h2>
@@ -14,27 +14,27 @@
 				<li class="center-block">
 					<div>
 						<a href="https://www.facebook.com/lytra.me" target="_blank">
-							<img src="img/alpha/facebook_white.png" alt=""
+							<img src="/img/alpha/facebook_white.png" alt=""
 							class="socialMediaButtonGeneral opaque pull-left" />
 						</a>
 					</div>
 					<div>
 						<a href="#" target="_blank"><img
-							src="img/alpha/twitter-bird-white-on-blue.png" alt=""
+							src="/img/alpha/twitter-bird-white-on-blue.png" alt=""
 							class="socialMediaButtonGeneral opaque pull-left" /></a>
 					</div>
 					<div>
 						<a href="#" target="_blank"><img
-							src="img/alpha/pinterest_badge_white.png" alt=""
+							src="/img/alpha/pinterest_badge_white.png" alt=""
 							class="socialMediaButtonGeneral opaque pull-left" /></a>
 					</div>
 					<div>
-						<a href="#" target="_blank"><img src="img/alpha/g+icon.png"
+						<a href="#" target="_blank"><img src="/img/alpha/g+icon.png"
 							alt="" class="socialMediaButtonGeneral opaque pull-left" /></a>
 					</div>
 					<div>
 						<a href="#" target="_blank"><img
-							src="img/alpha/InBug-60px-TM.png" alt=""
+							src="/img/alpha/InBug-60px-TM.png" alt=""
 							class="socialMediaButtonLinkedIn opaque pull-left " /></a>
 					</div>
 					
@@ -45,7 +45,7 @@
 			<ul class="nav hidden-xs" id="sidebar-footer">
 				<li>
 					
-					<img src="img/alpha/lytra-cup.png" class="lytra-cup opaque" alt="Responsive image">
+					<img src="/img/alpha/lytra-cup.png" class="lytra-cup opaque" alt="Responsive image">
 				</li>
 			</ul>
 		</div>
