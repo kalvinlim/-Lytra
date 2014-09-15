@@ -23,6 +23,8 @@
 							<c:forEach var="c" items="${files}">		    
 		    					<img src="/photo/${c}" class="img-responsive" alt="Responsive image">
 							</c:forEach>
+							
+							
 						<!-- /body content here -->
 					</div>
 					<!-- /padding -->

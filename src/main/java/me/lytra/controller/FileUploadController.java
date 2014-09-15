@@ -52,9 +52,13 @@ public class FileUploadController {
     }
 	
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file, @ModelAttribute User user){
-    	//logger.info("User: {}", user);
-        if (!file.isEmpty()) {
+    public String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file, @ModelAttribute User user){
+    	logger.info("User: {}, is null: {}", user, user.getId().equals(""));
+    	if(user.getId().equals("")){
+    		logger.warn("Select valid user: {}", user);
+    		return "redirect:/dashboard/";
+    	}
+    	if (!file.isEmpty()) {
             try {
             	String extension = file.getOriginalFilename().split("\\.")[1];
             	//logger.info("Filename: {}", file.getName());
@@ -69,15 +73,18 @@ public class FileUploadController {
                 // stream.close();
                 logger.info("You successfully uploaded: {} as {}.{}, using userId: {}", name, name, extension, user.getId());
                 //logger.info("You successfully uploaded " + name + " into " + name + "." + extension);
-                return "You successfully uploaded " + name + " into " + name + "." + extension;
+                //return "You successfully uploaded " + name + " into " + name + "." + extension;
+                return "redirect:/dashboard";
                 
             } catch (Exception e) {
             	logger.warn("You failed to upload " + name + " => " + e.getMessage());
-                return "You failed to upload " + name + " => " + e.getMessage();
+                //return "You failed to upload " + name + " => " + e.getMessage();
+                return "redirect:/dashboard";
             }
         } else {
         	logger.warn("You failed to upload " + name + " because the file was empty.");
-            return "You failed to upload " + name + " because the file was empty.";
+            //return "You failed to upload " + name + " because the file was empty.";
+        	return "redirect:/dashboard";
         }
     }
 	@RequestMapping(value="/foo/{userId}")

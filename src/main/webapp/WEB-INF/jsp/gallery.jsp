@@ -26,28 +26,28 @@
 		<div id="wowslider-container1">
 			<div class="ws_images">
 				<ul>
-					<li><img src="img/bg_dynamic/6.jpg" alt="6" title="6"
+					<li><img src="/img/bg_dynamic/6.jpg" alt="6" title="6"
 						id="wows1_0" /></li>
-					<li><img src="img/bg_dynamic/1.jpg" alt="1" title="1"
+					<li><img src="/img/bg_dynamic/1.jpg" alt="1" title="1"
 						id="wows1_1" /></li>
-					<li><img src="img/bg_dynamic/2.jpg" alt="2" title="2"
+					<li><img src="/img/bg_dynamic/2.jpg" alt="2" title="2"
 						id="wows1_2" /></li>
-					<li><img src="img/bg_dynamic/3.jpg" alt="3" title="3"
+					<li><img src="/img/bg_dynamic/3.jpg" alt="3" title="3"
 						id="wows1_3" /></li>
-					<li><img src="img/bg_dynamic/4.jpg" alt="4" title="4"
+					<li><img src="/img/bg_dynamic/4.jpg" alt="4" title="4"
 						id="wows1_4" /></li>
-					<li><img src="img/bg_dynamic/5.jpg" alt="5" title="5"
+					<li><img src="/img/bg_dynamic/5.jpg" alt="5" title="5"
 						id="wows1_5" /></li>
 				</ul>
 			</div>
 			<div class="ws_thumbs">
 				<div>
-					<a href="#" title="6"><img src="img/slider_thumbs/6.jpg" alt="" /></a>
-					<a href="#" title="1"><img src="img/slider_thumbs/1.jpg" alt="" /></a>
-					<a href="#" title="2"><img src="img/slider_thumbs/2.jpg" alt="" /></a>
-					<a href="#" title="3"><img src="img/slider_thumbs/3.jpg" alt="" /></a>
-					<a href="#" title="4"><img src="img/slider_thumbs/4.jpg" alt="" /></a>
-					<a href="#" title="5"><img src="img/slider_thumbs/5.jpg" alt="" /></a>
+					<a href="#" title="6"><img src="/img/slider_thumbs/6.jpg" alt="" /></a>
+					<a href="#" title="1"><img src="/img/slider_thumbs/1.jpg" alt="" /></a>
+					<a href="#" title="2"><img src="/img/slider_thumbs/2.jpg" alt="" /></a>
+					<a href="#" title="3"><img src="/img/slider_thumbs/3.jpg" alt="" /></a>
+					<a href="#" title="4"><img src="/img/slider_thumbs/4.jpg" alt="" /></a>
+					<a href="#" title="5"><img src="/img/slider_thumbs/5.jpg" alt="" /></a>
 				</div>
 			</div>
 		</div>

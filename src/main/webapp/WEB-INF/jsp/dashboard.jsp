@@ -48,7 +48,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Lytra Dashboard</a>
+				<a class="navbar-brand" href="/dashboard">Lytra Dashboard</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -119,22 +119,23 @@ body {
 				<button class="btn btn-warning" data-toggle="modal" data-target="#createuser">Add User</button>
 				<div class="col-md-6">
 					<div class="panel panel-default">
-						<div class="panel-heading">Panel heading without title</div>
+						<div class="panel-heading">Upload Photos</div>
 						<div class="panel-body">
 							<form:form commandName="user" class="form-horizontal" role="form"
 								method="POST" enctype="multipart/form-data" action="/upload">
 								<input type="file" name="file">
 		
 								<div class="form-group">
-									<label for="name" class="col-md-1">File name:</label>
-									<div class="col-md-4">
+									<label for="name" class="col-md-4 control-label">File name</label>
+									<div class="col-md-8">
 										<input type="text" name="name" id="name" class="form-control">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="name" class="col-md-1">Owner</label>
-									<div class="col-md-4">
+									<label for="name" class="col-md-4 control-label">Owner</label>
+									<div class="col-md-8">
 										<form:select path="id" class="form-control">
+											<form:option value="">Select user</form:option>
 											<c:forEach items="${users}" var="u">
 												<form:option value="${u.id}">${u.username}</form:option>
 											</c:forEach>

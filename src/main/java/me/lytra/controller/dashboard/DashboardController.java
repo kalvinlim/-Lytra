@@ -48,9 +48,7 @@ public class DashboardController {
 		if(session.getAttribute("USER_ADMIN").toString() != "true"){
 			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
 			return new ModelAndView("redirect:/lytra");
-		}
-
-		
+		}	
 		List<User> users = userService.findAllWithGalleryCount();
 		
 		ModelAndView mav = new ModelAndView();

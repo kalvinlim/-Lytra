@@ -48,7 +48,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Lytra Dashboard</a>
+				<a class="navbar-brand" href="/dashboard">Lytra Dashboard</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -89,6 +89,7 @@ body {
 			</div>
 			</c:forEach>
 		</div>
+		
 		<c:forEach var="c" items="${files}">
 			<div class="modal fade" id="deletephoto" tabindex="-1" role="dialog" aria-labelledby="createuser" aria-hidden="true">
 				<div class="modal-dialog">
