@@ -64,6 +64,11 @@ public class GridFsService {
 		GridFSDBFile result = operations.findOne(new Query().addCriteria(Criteria.where("_id").is(id)));
 		return result;
 	}
+	public void deleteGridFSDBFileByPhotoId(String id){
+		GridFSDBFile result = operations.findOne(new Query().addCriteria(Criteria.where("_id").is(id)));
+		logger.info("Photo delete processed for: {}, ", result);
+		operations.delete(new Query().addCriteria(Criteria.where("_id").is(id)));		
+	}
 	public List<String> getGridFSDBPhotoIdsByUserId(String userid){
 		
 		List<GridFSDBFile> files = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid)));
@@ -71,9 +76,6 @@ public class GridFsService {
 		
 		
 		for(GridFSDBFile file : files){
-			//logger.info("{}", file.toString());
-			//logger.info("{}", file.getId());			
-			//logger.info("==========================================");
 			photoIds.add(file.getId().toString());
 		}
 		
@@ -84,8 +86,8 @@ public class GridFsService {
 	}	
 	public int getGridFSDBPhotoCountByUserId(String userid){
 		Integer count = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))).size();
-		logger.info("searching for files with userID: {}", userid);
-		logger.info("found: {}", operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))));
+		//logger.info("searching for files with userID: {}", userid);
+		//logger.info("found: {}", operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))));
 		return count;
 	}
 	

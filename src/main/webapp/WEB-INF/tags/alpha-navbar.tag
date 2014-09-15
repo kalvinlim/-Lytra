@@ -9,32 +9,32 @@
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/alpha">Lytra</a>
+			<a class="navbar-brand" href="/lytra">Lytra</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">				
 				<li id="home" class="${active == 'home' ? 'active' : ''}"><a
-					href="/alpha">Home</a></li>
+					href="/lytra">Home</a></li>
 				<li id="about" class="${active == 'about' ? 'active' : ''}"><a
-					href="/about">About</a></li>
+					href="/lytra/about">About</a></li>
 				<li id="services" class="${active == 'services' ? 'active' : ''}"><a
 					href="#">Services</a></li>
 				<li id="gallery" class="${active == 'gallery' ? 'active' : ''}"><a
-					href="/gallery">Gallery</a></li>
+					href="/lytra/gallery">Gallery</a></li>
 				<li id="blog" class="${active == 'blog' ? 'active' : ''}"><a
-					href="/blog">Blog</a></li>
+					href="/lytra/blog">Blog</a></li>
 				<li id="contacts" class="${active == 'contacts' ? 'active' : ''}"><a
 					href="#">Contacts</a></li>
 				<c:if test="${sessionScope.USER_OBJECT.admin == true}">
 					<li><a href="/dashboard">Dashboard</a></li>
 				</c:if>
-				<c:if test="${sessionScope.USER_OBJECT ne null}">
+				<c:if test="${sessionScope.USER_OBJECT.photos > 0}">				
 					<li id="contacts" class="${active == 'contacts' ? 'active' : ''}"><a
 						href="/lytra/photos">My Photos</a></li>
 				</c:if>
 			</ul>
 			<ul class="nav navbar-nav">
-				<c:if test="${sessionScope.USER_OBJECT.photos > 0}">
+				<c:if test="${sessionScope.USER_OBJECT ne null}">
 					<li><a href="#">Logged in as:
 							${sessionScope.USER_OBJECT.username}</a></li>
 					<li class="active"><a href="/logout">Logout</a></li>

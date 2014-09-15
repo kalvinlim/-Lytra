@@ -99,7 +99,8 @@ body {
 							<th>
 								<c:choose>
 									<c:when test="${u.photos > 0}">     
-										<button type="button" class="btn btn-primary btn-xs">View Photos (${u.photos})</button>       									
+										       									
+										<a class="btn btn-primary btn-xs" href="/dashboard/user/${u.id}">View Photos (${u.photos})</a>
    									 </c:when>
 									
 									<c:otherwise>
@@ -116,8 +117,37 @@ body {
 				</table>
 				
 				<button class="btn btn-warning" data-toggle="modal" data-target="#createuser">Add User</button>
-				<div class="col-md-4">
-					
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Panel heading without title</div>
+						<div class="panel-body">
+							<form:form commandName="user" class="form-horizontal" role="form"
+								method="POST" enctype="multipart/form-data" action="/upload">
+								<input type="file" name="file">
+		
+								<div class="form-group">
+									<label for="name" class="col-md-1">File name:</label>
+									<div class="col-md-4">
+										<input type="text" name="name" id="name" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-md-1">Owner</label>
+									<div class="col-md-4">
+										<form:select path="id" class="form-control">
+											<c:forEach items="${users}" var="u">
+												<form:option value="${u.id}">${u.username}</form:option>
+											</c:forEach>
+										</form:select>
+									</div>
+								</div>
+		
+								<!-- <input type="submit" value="Upload"> -->
+								<button type="submit" value="Upload" class="btn btn-danger">Upload</button>
+							</form:form>
+						</div>
+					</div>
+
 				</div>
 				<!----------------------------------------------------------------------------------->
 
@@ -211,6 +241,8 @@ body {
 					</div>
 				</div>
 				<!---------------------------------------------------------------------------->
+				
+				
 			</div>
 		</div>
 

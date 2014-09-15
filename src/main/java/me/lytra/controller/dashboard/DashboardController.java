@@ -41,24 +41,29 @@ public class DashboardController {
 
 	@RequestMapping
 	public ModelAndView handleRequestDashboard(HttpSession session) {
-		List<User> users = userService.findAllWithGalleryCount();
-/*		if(session.getAttribute("USER_OBJECT") == null){
+		if(session.getAttribute("USER_OBJECT") == null){
+			logger.warn("Null login rejected");
 			return new ModelAndView("redirect:/lytra");
-		}*/
+		}
+		if(session.getAttribute("USER_ADMIN").toString() != "true"){
+			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
+			return new ModelAndView("redirect:/lytra");
+		}
+
+		
+		List<User> users = userService.findAllWithGalleryCount();
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("dashboard");
 		mav.addObject("users", users);
 		mav.addObject("user", new User());
-		
-		
-
-
+	
 		return mav;
 	}
 	
     @RequestMapping(value="/createuser", method=RequestMethod.POST)
-    public String handleFileUpload(@ModelAttribute User user){
+    public String handleFileUpload(@ModelAttribute User user, HttpSession session){
+		
     	if(user.getUsername() != null && user.getPassword() != null && user.getPassword().length() > 0){
     		userService.create(user);
     	}
@@ -66,7 +71,7 @@ public class DashboardController {
     	return "redirect:/dashboard";
     }
     @RequestMapping(value="/moduser", method=RequestMethod.POST)
-    public String handleFileUpload2(@ModelAttribute User user){
+    public String handleFileUpload2(@ModelAttribute User user, HttpSession session){
     	logger.info("user mod: {}", user);	
     	User result = userService.findById(user.getId());
     	if(result != null){
@@ -76,10 +81,36 @@ public class DashboardController {
     	
     	return "redirect:/dashboard";
     }
+    @RequestMapping(value="/delete/photo/{photoid}", method=RequestMethod.POST)
+    public String handleFileUpload3(@PathVariable String photoid, HttpSession session){
+		if(session.getAttribute("USER_OBJECT") == null){
+			logger.warn("Null login user attempted to delete photo: {}", photoid);
+			
+		}
+		if(session.getAttribute("USER_ADMIN").toString() != "true"){
+			logger.warn("Non admin user attempted to delete photo: {}", photoid);			
+		}
+		User requestUser = userService.findById(session.getAttribute("USER_ID").toString());
+    	logger.info("Delete requested by user: {}, for fileid: {}", requestUser, photoid);
+    	gridFsService.deleteGridFSDBFileByPhotoId(photoid);
+    	return "redirect:/dashboard";
+    }
     
 	@RequestMapping(value="/user/{userid}")
-	public ModelAndView getPhotoIdsByUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable String userid){
-		logger.info("userid: {}", userid);
+	public ModelAndView getPhotoIdsByUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable String userid, HttpSession session){
+		if(session.getAttribute("USER_OBJECT") == null){
+			logger.warn("Null login rejected");
+			return new ModelAndView("redirect:/lytra");
+		}
+		if(session.getAttribute("USER_ADMIN").toString() != "true"){
+			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
+			return new ModelAndView("redirect:/lytra");
+		}
+		logger.info("User admin login successful: {}", session.getAttribute("USER_OBJECT").toString());
+		
+		
+		
+		logger.info("Accessing photo list for userid: {}", userid);
 		List<String> fileIdList = gridFsService.getGridFSDBPhotoIdsByUserId(userid);
 		//53ffe8ea8d598e24fa67d190
 		ModelAndView mav = new ModelAndView("userphotos");
@@ -88,6 +119,7 @@ public class DashboardController {
 
 		return mav;
 	}
+
 /*	@RequestMapping("/blog")
 	public ModelAndView handleRequestDashboardBlog() {
 		ModelAndView mav = new ModelAndView();

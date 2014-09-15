@@ -35,7 +35,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView loginFoo(HttpSession session, @ModelAttribute User user) {
-		return new ModelAndView("alpha", "user", new User());
+		return new ModelAndView("lytra", "user", new User());
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(HttpSession session, @ModelAttribute User user) {
@@ -47,10 +47,16 @@ public class LoginController {
 			
 			session.setAttribute("USER_OBJECT", validUser);
 			session.setAttribute("USER_ID", validUser.getId());
+			if(validUser.isAdmin()){
+				session.setAttribute("USER_ADMIN", validUser.isAdmin());
+				logger.info("User admin login successful: {}", session.getAttribute("USER_OBJECT").toString());
+			}
 			return "redirect:/lytra";
 		}
+		
 		else {
-			return "noaccess";
+			logger.warn("Failed login attempted with username: {}", user.getUsername());
+			return "noaccess";			
 		}
 	}
 	@RequestMapping(value="/logout")
@@ -58,7 +64,7 @@ public class LoginController {
 		if(session != null){
 			session.invalidate();
 		}
-		return "redirect:/alpha";
+		return "redirect:/lytra";
 
 	}
 

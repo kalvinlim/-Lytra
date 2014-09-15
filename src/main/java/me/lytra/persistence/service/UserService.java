@@ -59,9 +59,13 @@ public class UserService {
 	
 	public User login(String username, String password){
 		User validUser = userRepository.findByUsername(username);
+		if(validUser.isDeleted()){
+			logger.warn("Deleted user rejected: {}", validUser);
+			return null;
+		}
 		String hashed = validUser.getPassword();
 		Boolean valid = jbCryptService.checkpw(password, hashed);
-		if(valid){
+		if(valid){			
 			return validUser;
 		}
 		else{

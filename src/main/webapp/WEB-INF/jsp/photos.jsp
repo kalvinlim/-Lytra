@@ -1,44 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="alpha-navbar" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
+<%@ taglib prefix="alpha-slideshow-bg" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="alpha-navbar" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="alpha-head" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="alpha-navbar-left" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+<alpha-head:alpha-head></alpha-head:alpha-head>
+<body>
+	<div class="wrapper">
+		<div class="box">
+			<div class="row">
+				<alpha-navbar:alpha-navbar></alpha-navbar:alpha-navbar>
+				<alpha-head:alpha-navbar-left></alpha-head:alpha-navbar-left>
+				<!-- main -->
+				<div class="column col-sm-10" id="main" style="background-color:black;">
+					<%-- <alpha-slideshow-bg:alpha-slideshow-bg></alpha-slideshow-bg:alpha-slideshow-bg> --%>
+					<!-- /padding -->
+					<div class="padding">
+						<!-- body content here -->
+							<c:forEach var="c" items="${files}">		    
+		    					<img src="/photo/${c}" class="img-responsive" alt="Responsive image">
+							</c:forEach>
+						<!-- /body content here -->
+					</div>
+					<!-- /padding -->
+				</div>
+				<!-- /main -->
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-  	<div class="container">
-  		
-  		
-		<c:forEach var="c" items="${files}">
-		    
-		    <img src="/photo/${c}" class="img-responsive" alt="Responsive image">
-		</c:forEach>
-		
-  	</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  </body>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script
+</body>
+<script>
+	$(function() {
+    	$("#login-submit").click(function(){
+    		var loginForm = $("#login-form").serializeArray();
+    		console.log(loginForm);
+    		//console.log($("#newPostForm").serializeArray());
+     		$.post( "/login", loginForm, function( data ) {
+     			location.reload(); 
+			});
+    		 
+    	});
+	});
+</script>
 </html>
-
-
-

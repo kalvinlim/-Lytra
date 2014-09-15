@@ -75,21 +75,24 @@ public class MainController {
 	}
 	@RequestMapping(value="/photos", method=RequestMethod.GET)
 	public ModelAndView handleRequestPhotos(HttpSession session) {
+		if(session.getAttribute("USER_OBJECT") == null){
+			return new ModelAndView("redirect:/lytra");
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("photos");
 		String userid = session.getAttribute("USER_ID").toString();
 		List<String> fileIdList = gridFsService.getGridFSDBPhotoIdsByUserId(userid);
-		
+		logger.info("Found photos for userid: {}, file id list: {}", userid, fileIdList);
 		mav.addObject("files", fileIdList);
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/json", produces = "application/json")
+/*	@RequestMapping(value = "/json", produces = "application/json")
 	public @ResponseBody
 	String testfoo() {
 		logger.info("Users: {}", blogService.findAll());
 		return userService.findAll().toString();
-	}
+	}*/
 
 }
