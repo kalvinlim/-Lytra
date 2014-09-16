@@ -1,8 +1,5 @@
 package me.lytra.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -17,8 +14,6 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,35 +47,39 @@ public class FileUploadController {
     }
 	
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file, @ModelAttribute User user){
-    	logger.info("User: {}, is null: {}", user, user.getId().equals(""));
+    //public String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file, @ModelAttribute User user){
+    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file,  @ModelAttribute User user){
+    	String name = file.getOriginalFilename();
+  	
     	if(user.getId().equals("")){
     		logger.warn("Select valid user: {}", user);
     		return "redirect:/dashboard/";
     	}
-    	if (!file.isEmpty()) {
-            try {
-            	String extension = file.getOriginalFilename().split("\\.")[1];
-            	//logger.info("Filename: {}", file.getName());
-            	//logger.info("Filename: {}", extension);
-            	
-                byte[] bytes = file.getBytes();
-                
-              
-                gridFsService.saveOne(file, user, name);
-                //BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name + "." + extension)));
-                //stream.write(bytes);
-                // stream.close();
-                logger.info("You successfully uploaded: {} as {}.{}, using userId: {}", name, name, extension, user.getId());
-                //logger.info("You successfully uploaded " + name + " into " + name + "." + extension);
-                //return "You successfully uploaded " + name + " into " + name + "." + extension;
-                return "redirect:/dashboard";
-                
-            } catch (Exception e) {
-            	logger.warn("You failed to upload " + name + " => " + e.getMessage());
-                //return "You failed to upload " + name + " => " + e.getMessage();
-                return "redirect:/dashboard";
-            }
+
+    	if (!file.isEmpty()){
+    		if(file.getContentType().equalsIgnoreCase("image/png") || file.getContentType().equalsIgnoreCase("image/jpeg")){
+    			logger.info("Valid. Filename: {}, type: {}", file.getOriginalFilename(), file.getContentType());
+    			 try {
+    	            	  	                    	              
+    	                gridFsService.saveOne(file, user);
+    	                //BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name + "." + extension)));
+    	                //stream.write(bytes);
+    	                // stream.close();
+    	                logger.info("You successfully uploaded: {}, using userId: {}", name, user.getId());
+    	                //logger.info("You successfully uploaded " + name + " into " + name + "." + extension);
+    	                //return "You successfully uploaded " + name + " into " + name + "." + extension;
+    	                return "redirect:/dashboard";
+    	                
+    	            } catch (Exception e) {
+    	            	logger.warn("You failed to upload " + name + " => " + e.getMessage());
+    	                //return "You failed to upload " + name + " => " + e.getMessage();
+    	                return "redirect:/dashboard";
+    	            }
+    		}else{
+    			logger.warn("Invalid file type uploaded, rejecting file: {}, of type: {}", file.getOriginalFilename(), file.getContentType());
+    			return "redirect: /dashboard";
+    		}
+           
         } else {
         	logger.warn("You failed to upload " + name + " because the file was empty.");
             //return "You failed to upload " + name + " because the file was empty.";

@@ -32,8 +32,8 @@ public class GridFsService {
 	@Autowired
 	UserService userService;
 	
-	public void saveOne(MultipartFile file, User user, String fileName){
-		String extension = file.getOriginalFilename().split("\\.")[1];
+	public void saveOne(MultipartFile file, User user){
+		
 		DBObject metaData = new BasicDBObject();
 		
 		User completedUser = userService.findById(user.getId());
@@ -41,15 +41,12 @@ public class GridFsService {
 		metaData.put("username", completedUser.getUsername());
 		metaData.put("userid", completedUser.getId());
 		
-		String fileNameResult = fileName + "." + extension;
-		//Resource file = new ClassPathResource("iStock_000015201389Small.jpg");
-		
 		
 		
 		
 		try {
-			operations.store(file.getInputStream(), fileNameResult, metaData);
-			logger.info("Saved file into mongodb: {}, with user: {}", fileNameResult, completedUser);
+			operations.store(file.getInputStream(), file.getOriginalFilename(), metaData);
+			logger.info("Saved file into mongodb: {}, with user: {}", file.getOriginalFilename(), completedUser);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

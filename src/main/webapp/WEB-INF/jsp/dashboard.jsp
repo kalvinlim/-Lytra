@@ -19,9 +19,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/css/dropzone.css">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -33,9 +32,13 @@ body {
 }
 #myModal{
 	top:20%;
-
+}
+#photodropzone{
+    border-style: solid;
+    border-color: black;
 }
 </style>
+<script src="/js/dropzone.js"></script>
 </head>
 
 <body>
@@ -87,9 +90,7 @@ body {
 								${u.username} 
 								<%-- <a href="javascript:void(0)" onclick="edit('${u.id}')">(edit)</a> --%>
 								<!-- <a href="javascript:void(0)" class="edituser">(edit)</a> --> 
-								<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#useredit_${u.id}">
-									Edit
-								</button>
+								<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#useredit_${u.id}">Edit</button>								
 								<input type="text" value="${u.id}" class="id hidden">
 								<input type="text" value="${u.username}" class="username hidden">
 								<input type="text" value="${u.created}" class="hidden">
@@ -98,8 +99,7 @@ body {
 							</th>
 							<th>
 								<c:choose>
-									<c:when test="${u.photos > 0}">     
-										       									
+									<c:when test="${u.photos > 0}">     										       									
 										<a class="btn btn-primary btn-xs" href="/dashboard/user/${u.id}">View Photos (${u.photos})</a>
    									 </c:when>
 									
@@ -107,7 +107,7 @@ body {
        									 No Photos
    									</c:otherwise>
 								</c:choose>
-								
+								<a class="btn btn-primary btn-xs" href="/dashboard/user/upload/${u.id}">Upload Photos</a>
 							</th>
 							<th>${u.created}</th>
 							<th>${u.deleted}</th>
@@ -115,42 +115,9 @@ body {
 						</tr>
 					</c:forEach>
 				</table>
-				
-				<button class="btn btn-warning" data-toggle="modal" data-target="#createuser">Add User</button>
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">Upload Photos</div>
-						<div class="panel-body">
-							<form:form commandName="user" class="form-horizontal" role="form"
-								method="POST" enctype="multipart/form-data" action="/upload">
-								<input type="file" name="file">
-		
-								<div class="form-group">
-									<label for="name" class="col-md-4 control-label">File name</label>
-									<div class="col-md-8">
-										<input type="text" name="name" id="name" class="form-control">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="name" class="col-md-4 control-label">Owner</label>
-									<div class="col-md-8">
-										<form:select path="id" class="form-control">
-											<form:option value="">Select user</form:option>
-											<c:forEach items="${users}" var="u">
-												<form:option value="${u.id}">${u.username}</form:option>
-											</c:forEach>
-										</form:select>
-									</div>
-								</div>
-		
-								<!-- <input type="submit" value="Upload"> -->
-								<button type="submit" value="Upload" class="btn btn-danger">Upload</button>
-							</form:form>
-						</div>
-					</div>
+	
 
-				</div>
-				<!----------------------------------------------------------------------------------->
+				<!------------------ Modals  ------------------------------------->
 
 
 				<!-- User edits -->

@@ -27,7 +27,7 @@
 					href="#">Contacts</a></li>
 				<c:if test="${sessionScope.USER_OBJECT.admin == true}">
 					<li><a href="/dashboard">Dashboard</a></li>
-				</c:if>
+				</c:if>				
 				<c:if test="${sessionScope.USER_OBJECT.photos > 0}">				
 					<li id="contacts" class="${active == 'contacts' ? 'active' : ''}"><a
 						href="/lytra/photos">My Photos</a></li>

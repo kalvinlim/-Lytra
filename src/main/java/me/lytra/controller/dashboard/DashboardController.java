@@ -59,6 +59,28 @@ public class DashboardController {
 		return mav;
 	}
 	
+	@RequestMapping("/user/upload/{userid}")
+	public ModelAndView handleRequestUserUpload(@PathVariable String userid, HttpSession session) {
+		if(session.getAttribute("USER_OBJECT") == null){
+			logger.warn("Null login rejected");
+			return new ModelAndView("redirect:/lytra");
+		}
+		if(session.getAttribute("USER_ADMIN").toString() != "true"){
+			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
+			return new ModelAndView("redirect:/lytra");
+		}	
+		
+		User user = userService.findById(userid);
+		if(user == null){
+			logger.warn("User id param rejected; not found. userid: {}", userid);
+			return new ModelAndView("redirect:/lytra");
+		}
+		ModelAndView mav = new ModelAndView("userupload");
+		mav.addObject("user", user);				
+		return mav;
+	}
+	
+	
     @RequestMapping(value="/createuser", method=RequestMethod.POST)
     public String handleFileUpload(@ModelAttribute User user, HttpSession session){
 		
