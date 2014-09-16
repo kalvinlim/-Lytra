@@ -115,7 +115,8 @@ body {
 						</tr>
 					</c:forEach>
 				</table>
-	
+				<button class="btn btn-warning" data-toggle="modal" data-target="#createuser">Add User</button>
+				
 
 				<!------------------ Modals  ------------------------------------->
 
