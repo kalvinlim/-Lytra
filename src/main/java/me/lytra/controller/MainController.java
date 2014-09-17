@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping(value="/lytra")
+
 public class MainController {
 	static Logger logger = LoggerFactory.getLogger(MainController.class);
 
@@ -40,13 +40,20 @@ public class MainController {
 		return mav;
 	}
 	
-*/	@RequestMapping(value="", method=RequestMethod.GET)
+*/
+    @RequestMapping(value="/", method=RequestMethod.GET)
+    public @ResponseBody String index() {
+        return "Hello";
+    }
+
+	
+/*	@RequestMapping(value="", method=RequestMethod.GET)
 	public ModelAndView handleRequest(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("alpha");
 		return mav;
 	
-	}
+	}*/
 
 	@RequestMapping("/gallery")
 	public ModelAndView handleRequestGallery() {
