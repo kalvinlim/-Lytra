@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TomcatConfig {
 	
-	private final int PORT_NUMBER = 1337;
+	private final int PORT_NUMBER = 8080;
 	private final int SESSION_TIMEOUT = 10;
 	
 	@Bean
