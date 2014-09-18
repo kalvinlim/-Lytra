@@ -6,14 +6,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-@ComponentScan(basePackages = "me.lytra")
+@Configuration
 @EnableAutoConfiguration
+@ComponentScan(basePackages = "me.lytra")
+//@ComponentScan
 @EnableMongoRepositories(basePackages = "me.lytra.persistence")
 public class Application {
 
-	public static void main(String[] args) throws Exception {
+	@SuppressWarnings("unused")
+	public static void main(String[] args) throws Exception {		
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		//debugBeans(ctx);
 	}

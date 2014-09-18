@@ -43,16 +43,17 @@ public class MainController {
 */
     @RequestMapping(value="/", method=RequestMethod.GET)
     public @ResponseBody String index() {
+    	logger.info("foo ######################################");
         return "Hello";
     }
 
 	
-/*	@RequestMapping(value="", method=RequestMethod.GET)
+/*	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView handleRequest(HttpSession session) {
+		logger.info("foo ######################################");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("alpha");
-		return mav;
-	
+		return mav;	
 	}*/
 
 	@RequestMapping("/gallery")
