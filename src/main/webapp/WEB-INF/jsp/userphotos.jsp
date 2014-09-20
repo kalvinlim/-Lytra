@@ -67,7 +67,7 @@ body {
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="/lytra">Lytra Home</a></li>
+					<li class="active"><a href="/">Lytra Home</a></li>
 					<li><a href="">Users</a></li>
 				</ul>
 

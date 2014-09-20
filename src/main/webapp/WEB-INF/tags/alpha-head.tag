@@ -27,10 +27,10 @@
 
 <link rel="shortcut icon" href="../favicon.ico">
 <!-- <link rel="stylesheet" type="text/css" href="/css/demo.css" /> --> 
-<link rel="stylesheet" type="text/css" href="/css/style3.css" />
+<link rel="stylesheet" type="text/css" href="css/style3.css" />
 
-<link rel="stylesheet" type="text/css" href="/css/slider/style.css" />
-<script type="text/javascript" src="/js/modernizr.custom.86080.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slider/style.css" />
+<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
 </head>
 
 

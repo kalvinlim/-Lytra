@@ -5,6 +5,8 @@
 <%@ taglib prefix="alpha-navbar" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="alpha-head" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="alpha-navbar-left" tagdir="/WEB-INF/tags" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <alpha-head:alpha-head></alpha-head:alpha-head>
@@ -31,6 +33,7 @@
 	<!-- /.container -->
 
 	
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
@@ -42,7 +45,7 @@
     		var loginForm = $("#login-form").serializeArray();
     		console.log(loginForm);
     		//console.log($("#newPostForm").serializeArray());
-     		$.post( "/login", loginForm, function( data ) {
+     		$.post( "<spring:url value='login' />", loginForm, function( data ) {
      			location.reload(); 
 			});
     		 

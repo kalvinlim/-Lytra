@@ -51,7 +51,7 @@ public class LoginController {
 				session.setAttribute("USER_ADMIN", validUser.isAdmin());
 				logger.info("User admin login successful: {}", session.getAttribute("USER_OBJECT").toString());
 			}
-			return "redirect:/lytra";
+			return "redirect:/";
 		}
 		
 		else {
@@ -64,7 +64,7 @@ public class LoginController {
 		if(session != null){
 			session.invalidate();
 		}
-		return "redirect:/lytra";
+		return "redirect:/";
 
 	}
 
