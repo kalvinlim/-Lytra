@@ -20,7 +20,7 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/css/dropzone.css">
+
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -33,12 +33,9 @@ body {
 #myModal{
 	top:20%;
 }
-#photodropzone{
-    border-style: solid;
-    border-color: black;
-}
+
 </style>
-<script src="/js/dropzone.js"></script>
+
 </head>
 
 <body>
@@ -51,7 +48,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/dashboard">Lytra Dashboard</a>
+				<a class="navbar-brand" href="/lytra/dashboard">Lytra Dashboard</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -70,7 +67,7 @@ body {
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="/">Lytra Home</a></li>
+					<li class="active"><a href="/lytra">Lytra Home</a></li>
 					<li><a href="">Users</a></li>
 				</ul>
 
@@ -100,14 +97,14 @@ body {
 							<th>
 								<c:choose>
 									<c:when test="${u.photos > 0}">     										       									
-										<a class="btn btn-primary btn-xs" href="/dashboard/user/${u.id}">View Photos (${u.photos})</a>
+										<a class="btn btn-primary btn-xs" href="/lytra/dashboard/user/${u.id}">View Photos (${u.photos})</a>
    									 </c:when>
 									
 									<c:otherwise>
        									 No Photos
    									</c:otherwise>
 								</c:choose>
-								<a class="btn btn-primary btn-xs" href="/dashboard/user/upload/${u.id}">Upload Photos</a>
+								<a class="btn btn-primary btn-xs" href="/lytra/dashboard/user/upload/${u.id}">Upload Photos</a>
 							</th>
 							<th>${u.created}</th>
 							<th>${u.deleted}</th>

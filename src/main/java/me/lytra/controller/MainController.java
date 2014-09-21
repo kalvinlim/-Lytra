@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-
 public class MainController {
 	static Logger logger = LoggerFactory.getLogger(MainController.class);
 

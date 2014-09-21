@@ -48,7 +48,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/dashboard">Lytra Dashboard</a>
+				<a class="navbar-brand" href="/lytra/dashboard">Lytra Dashboard</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -67,7 +67,7 @@ body {
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="/">Lytra Home</a></li>
+					<li class="active"><a href="/lytra">Lytra Home</a></li>
 					<li><a href="">Users</a></li>
 				</ul>
 
@@ -81,7 +81,7 @@ body {
 			</div>
 			<c:forEach var="c" items="${files}">
 			<div class="col-sm-offset-3 col-md-offset-2 col-md-9">
-				<img src="/photo/${c}" class="img-responsive img-thumbnail" alt="Responsive image">				
+				<img src="/lytra/photo/${c}" class="img-responsive img-thumbnail" alt="Responsive image">				
 				
 				
 		
