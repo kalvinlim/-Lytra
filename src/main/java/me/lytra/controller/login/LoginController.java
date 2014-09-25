@@ -35,6 +35,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView loginFoo(HttpSession session, @ModelAttribute User user) {
+		logger.info("login ######################################");
 		return new ModelAndView("lytra", "user", new User());
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
