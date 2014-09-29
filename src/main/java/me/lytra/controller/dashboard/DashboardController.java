@@ -38,11 +38,11 @@ public class DashboardController {
 	public ModelAndView handleRequestDashboard(HttpSession session) {
 		if(session.getAttribute("USER_OBJECT") == null){
 			logger.warn("Null login rejected");
-			return new ModelAndView("redirect:/lytra");
+			return new ModelAndView("redirect:/");
 		}
 		if(session.getAttribute("USER_ADMIN").toString() != "true"){
 			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
-			return new ModelAndView("redirect:/lytra");
+			return new ModelAndView("redirect:/");
 		}	
 		List<User> users = userService.findAllWithGalleryCount();
 		
@@ -58,17 +58,17 @@ public class DashboardController {
 	public ModelAndView handleRequestUserUpload(@PathVariable String userid, HttpSession session) {
 		if(session.getAttribute("USER_OBJECT") == null){
 			logger.warn("Null login rejected");
-			return new ModelAndView("redirect:/lytra");
+			return new ModelAndView("redirect:/");
 		}
 		if(session.getAttribute("USER_ADMIN").toString() != "true"){
 			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
-			return new ModelAndView("redirect:/lytra");
+			return new ModelAndView("redirect:/");
 		}	
 		
 		User user = userService.findById(userid);
 		if(user == null){
 			logger.warn("User id param rejected; not found. userid: {}", userid);
-			return new ModelAndView("redirect:/lytra");
+			return new ModelAndView("redirect:/");
 		}
 		ModelAndView mav = new ModelAndView("userupload");
 		mav.addObject("user", user);				
