@@ -62,6 +62,7 @@ public class FileUploadController {
     			 try {
     	            	  	                    	              
     	                gridFsService.saveOne(file, user);
+    				 
     	                //BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name + "." + extension)));
     	                //stream.write(bytes);
     	                // stream.close();
