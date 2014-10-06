@@ -77,9 +77,17 @@ public class DashboardController {
 	
 	
     @RequestMapping(value="/createuser", method=RequestMethod.POST)
-    public String handleFileUpload(@ModelAttribute User user, HttpSession session){
+    public String createUser(@ModelAttribute User user, HttpSession session){
+		if(session.getAttribute("USER_OBJECT") == null){
+			logger.warn("Null login rejected");
+			return "redirect:/";
+		}
+		if(session.getAttribute("USER_ADMIN").toString() != "true"){
+			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
+			return "redirect:/";
+		}	
 		
-    	if(user.getUsername() != null && user.getPassword() != null && user.getPassword().length() > 0){
+    	if(user.getUsername() != null && user.getPassword() != null && user.getPassword().length() > 0){    		
     		userService.create(user);
     	}
     	
@@ -87,6 +95,15 @@ public class DashboardController {
     }
     @RequestMapping(value="/moduser", method=RequestMethod.POST)
     public String handleFileUpload2(@ModelAttribute User user, HttpSession session){
+		if(session.getAttribute("USER_OBJECT") == null){
+			logger.warn("Null login rejected");
+			return "redirect:/";
+		}
+		if(session.getAttribute("USER_ADMIN").toString() != "true"){
+			logger.warn("User admin login rejected: {}", session.getAttribute("USER_OBJECT").toString());
+			return "redirect:/";
+		}	
+		
     	logger.info("user mod: {}", user);	
     	User result = userService.findById(user.getId());
     	if(result != null){

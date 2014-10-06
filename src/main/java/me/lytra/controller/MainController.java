@@ -32,31 +32,15 @@ public class MainController {
 	
 	@Autowired
 	private GridFsService gridFsService;
-/*	@RequestMapping(value="/test")
-	public ModelAndView test(HttpSession session, @ModelAttribute User user) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("hello");
-		return mav;
-	}
 	
-*/
-	
-	
-	@RequestMapping(value="/test")
-	public @ResponseBody String test() {
-		return "test";
-	}
-	
-	@RequestMapping("/greeting")
+/*	@RequestMapping("/greeting")
 	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
 		model.addAttribute("name", name);
 		return "greeting";
-	}
+	}*/
 
-	
     @RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView handleRequest(HttpSession session) {
-		logger.info("index ######################################");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
 		return mav;	

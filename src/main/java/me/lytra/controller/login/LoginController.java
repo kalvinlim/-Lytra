@@ -40,7 +40,7 @@ public class LoginController {
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(HttpSession session, @ModelAttribute User user) {
-		logger.info("User: {}", user);
+		logger.info("User login attept: {}", user);
 		User validUser = userService.login(user.getUsername(), user.getPassword());
 		if(validUser!=null){
 			validUser.setPhotos(userService.getPhotoCountByUserId(validUser.getId()));

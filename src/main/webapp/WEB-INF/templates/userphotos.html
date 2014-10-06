@@ -40,11 +40,8 @@ body {
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Dashboard</a></li>
-					<li><a href="#" th:if="${session.USER_OBJECT} != null"
-									th:text="${session.USER_OBJECT.username}">Logged in as : </a></li>
-								<!-- <p th:if="${session.USER_OBJECT} != null" th:text="${session.USER_OBJECT.admin}" />  -->
-								<li class="active" th:if="${session.USER_OBJECT} != null"><a
-									href="/logout">Logout</a></li>
+					<li><a href="#" th:if="${session.USER_OBJECT} != null" th:text="${session.USER_OBJECT.username}">Logged in as : </a></li>
+					<li class="active" th:if="${session.USER_OBJECT} != null"><a href="/logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
