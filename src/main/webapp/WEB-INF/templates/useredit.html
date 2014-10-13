@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <title>Dashboard Template for Bootstrap</title>
 
 <!-- Latest compiled and minified CSS -->
@@ -9,7 +8,9 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" href="/lytra/css/dropzone.css" />
+
+<link rel="stylesheet" href="/lytra/css/bootstrap-switch.min.css" />
+
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -21,13 +22,9 @@ body {
 }
 #myModal{
 	top:20%;
-}
-#photodropzone{
-    border-style: solid;
-    border-color: black;
+
 }
 </style>
-<script src="/lytra/js/dropzone.js"></script>
 </head>
 
 <body>
@@ -45,11 +42,8 @@ body {
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Dashboard</a></li>
-					<li><a href="#" th:if="${session.USER_OBJECT} != null"
-									th:text="${session.USER_OBJECT.username}">Logged in as : </a></li>
-								<!-- <p th:if="${session.USER_OBJECT} != null" th:text="${session.USER_OBJECT.admin}" />  -->
-								<li class="active" th:if="${session.USER_OBJECT} != null"><a
-									href="/logout">Logout</a></li>
+					<li><a href="#" th:if="${session.USER_OBJECT} != null" th:text="${session.USER_OBJECT.username}">Logged in as : </a></li>
+					<li class="active" th:if="${session.USER_OBJECT} != null"><a href="/logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -64,23 +58,49 @@ body {
 
 			</div>
 			<div class="col-sm-offset-3 col-md-offset-2 col-md-9">
-		
-	
-				<div class="col-md-12">
-					<div class="well" >Uploading photos for user: <strong th:text="${session.USER_OBJECT.username}">${user.username}</strong></div>					
-					<div style="border-color:black">
-					
-					<form action="#" th:action="@{/upload}" th:object="${user}" method="post" role="form" enctype="multipart/form-data" id="photodropzone" class="dropzone">						
-						<input th:field="*{id}" path="id" class="hidden" />
+					<div class="col-md-5">
+					<form class="form-horizontal" role="form" method="POST" th:action="@{/dashboard/user/save/}" th:object='${user}'>
+								<div class="well" >Edit User: <strong th:text="${user.username}">${user.username}</strong></div>		
+								<div class="modal-body">					
+										<div class="form-group">
+											<label for="name" class="col-md-3">Admin</label>
+											<div class="col-md-9">												 
+												<input type="checkbox" name="admin" th:field="*{admin}" th:value="${user.admin}" />												
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="name" class="col-md-3">Deleted</label>
+											<div class="col-md-9">
+												<input type="checkbox" name="deleted" th:field="*{deleted}" th:value="${user.deleted}" />																								
+											</div>
+										</div>	
+										<div class="form-group">
+											<label for="name" class="col-md-3">Photos</label>
+											<div class="col-md-9">											
+												<p th:text="${user.photos}" th:remove="tag"/>																								
+											</div>
+										</div>		 	 							
+																
+								
+								</div>								
+								<input th:field="*{id}" path="id" class="hidden" />
+								<div class="modal-footer">									
+									<a class="btn btn-default" th:href="@{/dashboard/}">Cancel</a>
+									<button type="submit" class="btn btn-primary">Save</button>
+								</div>
 					</form>
-							
-					</div>	
-				</div>
-
+		    		</div>   		
 				
-
+		
 			</div>
+			
+
+			
 		</div>
+		
+			
+			
+		
 
 	</div>
 
@@ -90,6 +110,7 @@ body {
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script	src="/lytra/js/bootstrap-switch.min.js"></script>
 	<script>
 		$(function() {
 			$( ".edituser" ).click(function() {
@@ -103,6 +124,9 @@ body {
 				console.log(deleted);
 				console.log(admin);
 			});	
+			
+			$("[name='admin']").bootstrapSwitch({onText:"Yes", offText: "No"});
+			$("[name='deleted']").bootstrapSwitch({onText:"Yes", offText: "No"});
 		});
 		function edit(id){
 			
@@ -112,4 +136,3 @@ body {
 	</script>
 </body>
 </html>
-

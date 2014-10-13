@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -93,8 +94,19 @@ public class DashboardController {
     	
     	return "redirect:/dashboard";
     }
-    @RequestMapping(value="/moduser", method=RequestMethod.POST)
-    public String handleFileUpload2(@ModelAttribute User user, HttpSession session){
+    
+    
+    @RequestMapping(value="/user/edit/{id}", method=RequestMethod.GET)
+    public ModelAndView handleModUser(@PathVariable String id, HttpSession session){	    	
+    	User user = userService.findOneWithGalleryCount(id);
+    	ModelAndView mav = new ModelAndView("useredit");
+		mav.addObject("user", user);				
+		return mav;
+    }
+    
+    
+    @RequestMapping(value="/user/save/", method=RequestMethod.POST)
+    public String handleModUserSave(@ModelAttribute User user, HttpSession session){
 		if(session.getAttribute("USER_OBJECT") == null){
 			logger.warn("Null login rejected");
 			return "redirect:/";
@@ -104,7 +116,7 @@ public class DashboardController {
 			return "redirect:/";
 		}	
 		
-    	logger.info("user mod: {}", user);	
+    		
     	User result = userService.findById(user.getId());
     	if(result != null){
     		logger.info("user mod: {}, changes: {}", result, user);	

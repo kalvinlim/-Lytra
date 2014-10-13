@@ -85,6 +85,15 @@ public class UserService {
 	public User findById(String id){
 		return userRepository.findById(id);
 	}
+	
+	public User findOneWithGalleryCount(String id){
+		User user = userRepository.findById(id);
+		
+		Integer count = gridFsService.getGridFSDBPhotoCountByUserId(id);
+		user.setPhotos(count);
+		
+		return user;
+	}
 	/*static Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired

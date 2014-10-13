@@ -52,8 +52,7 @@ body {
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="/lytra">Lytra Home</a></li>
-					<li><a href="">Users</a></li>
+					<li class="active"><a href="/lytra">Lytra Home</a></li>					
 				</ul>
 
 			</div>
@@ -71,15 +70,17 @@ body {
 					
 						<tr th:each="u : ${users}">
 							<th>
-								<p th:text="${u.username}" th:remove="tag" />
-								<button class="btn btn-primary btn-xs" data-toggle="modal" th:attr="data-target='#useredit_'+${u.id}">Edit</button>								
+								<p th:text="${u.username}" th:remove="tag" />								
+								<a class="btn btn-primary btn-xs" th:href="'/lytra/dashboard/user/edit/'+${u.id}" role="button">Edit</a>								
 								<input type="text" value="${u.id}" class="id hidden" />
+								
 								<input type="text" value="${u.username}" class="username hidden" />
 								<input type="text" value="${u.created}" class="hidden" />
 								<input type="text" value="${u.deleted}" class="deleted hidden" />
 								<input type="text" value="${u.admin}" class="admin hidden" />
 							</th>
 							<th>
+							
 								<a class="btn btn-primary btn-xs" th:if="${u.photos} > 0" th:href="'/lytra/dashboard/user/' + ${u.id}" th:text="'View Photos ' + '(' + ${u.photos} + ')'"/>
 								<p th:if="${u.photos} == 0" th:remove="tag">No Photos</p>
 								
@@ -101,54 +102,7 @@ body {
 				<!-- Modals -->
 
 
-				<!-- User edits -->
-				
-				<div th:each="u : ${users}" th:remove="tag" >
-					<div class="modal fade" th:id="'useredit_'+${u.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">
-										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-									</button>
-									<h4 class="modal-title" id="myModalLabel">Edit User</h4>
-								</div>
-								
-								<form class="form-horizontal" role="form" method="POST" th:action="@{/dashboard/moduser}" th:object='${user}'>
-								<div class="modal-body">
-										<p th:text="${u}"/>
-										<div class="form-group">
-											<label for="name" class="col-md-3">User</label>
-											<div class="col-md-9" th:text="${u.username}" />
-										</div>
-										<div class="form-group">
-											<label for="name" class="col-md-3">Admin</label>
-											<div class="col-md-9">
-												<input type="radio" th:field="*{admin}" value="true" th:text="true" th:attr="checked='checked'"/> 
-												<input type="radio" th:field="*{admin}" value="false" th:text="not checked" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="name" class="col-md-3">Deleted</label>
-											<div class="col-md-9">
-												<input type="radio" th:field="*{deleted}" value="true" th:text="true" /> 
-												<!-- <input type="radio" th:field="*{deleted}" value="false" th:text="false" /> -->																								
-											</div>
-										</div>		 							
-																
-								
-								</div>								
-								<input th:field="*{id}" path="id" class="hidden" />
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary">Save changes</button>
-								</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				
+
 				<!-- create user modal -->
 				<div class="modal fade" id="createuser" tabindex="-1" role="dialog" aria-labelledby="createuser" aria-hidden="true">
 					<div class="modal-dialog">
