@@ -40,12 +40,18 @@ public class MainController {
 	}*/
 
     @RequestMapping(value="/", method=RequestMethod.GET)
-	public ModelAndView handleRequest(HttpSession session) {
+	public ModelAndView handleIndex(HttpSession session) {
+    	logger.info("Index accessed");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
+		mav.setViewName("test");
 		return mav;	
 	}
 
+    @RequestMapping(value="/test", method=RequestMethod.GET)
+	public @ResponseBody String handleTest(HttpSession session) {
+    	logger.info("FOO");
+    	return "Foo";
+	}
 	@RequestMapping("/gallery")
 	public ModelAndView handleRequestGallery() {
 		ModelAndView mav = new ModelAndView();

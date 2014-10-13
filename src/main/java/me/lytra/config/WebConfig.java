@@ -34,7 +34,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Description("Thymeleaf template resolver serving HTML 5")
 	public ServletContextTemplateResolver templateResolver() {
 		ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
-		templateResolver.setPrefix("/WEB-INF/templates/");
+		/*templateResolver.setPrefix("/WEB-INF/templates/");*/
+		templateResolver.setPrefix("/templates/");
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
 		return templateResolver;
