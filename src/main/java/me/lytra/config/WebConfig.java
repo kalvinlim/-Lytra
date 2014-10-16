@@ -11,8 +11,8 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-@Configuration
-@EnableWebMvc
+//@Configuration
+//@EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 /*	@Override

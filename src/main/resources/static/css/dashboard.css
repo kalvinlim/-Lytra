@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+html,body {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.sidebar {
+	background-color: #1B1E24;
+	width: 250px;
+	height: 100%;
+	color: white;
+	font-family: 'Open Sans';
+}
