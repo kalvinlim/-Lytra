@@ -1,12 +1,12 @@
 package me.lytra.controller.facebook;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.PagedList;
-import org.springframework.social.facebook.api.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Controller
@@ -23,12 +22,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FacebookController {
 	static Logger logger = LoggerFactory.getLogger(FacebookController.class);
     		
-	private Facebook facebook;
-
+	//private Facebook facebook;
+/*
     @Inject
     public FacebookController(Facebook facebook) {
         this.facebook = facebook;
-    }
+    }*/
 
 
     @RequestMapping(value = "", produces = "application/json", method=RequestMethod.GET)
@@ -44,26 +43,45 @@ public class FacebookController {
     
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Page {
-
-    	//@JsonProperty("title")
-        private String title;
-
+    	
     	public Page() {}
     	
+    	//@JsonProperty("title")
+        //private String title;
+
+    	private List<Entry> entries;
+    	
+		public List<Entry> getEntries() {
+			return entries;
+		}
+
+		public void setEntries(List<Entry> entries) {
+			this.entries = entries;
+		}
+
+		@Override
+		public String toString() {
+			return "Page [entries=" + entries + "]";
+		}	
+		
+    }
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Entry{
+    	public Entry(){}
+    	
+    	private String title;
+
 		public String getTitle() {
 			return title;
 		}
-
 		public void setTitle(String title) {
 			this.title = title;
 		}
 
 		@Override
 		public String toString() {
-			return "Page [title=" + title + "]";
+			return "Entry [title=" + title + "]";
 		}
-		
-		
     }
 
 }
