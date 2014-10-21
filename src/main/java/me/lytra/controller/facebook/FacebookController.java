@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @RequestMapping("/facebook")
 public class FacebookController {
 	static Logger logger = LoggerFactory.getLogger(FacebookController.class);
+	
+	@Value("${facebook.app.id}")
+	private String facebookAppId;
+	
+	@Value("${facebook.app.secret}")
+	private String facebookAppSecret;
     		
     @RequestMapping(value = "")
     public ModelAndView helloFacebook(Model model) {
@@ -33,8 +40,79 @@ public class FacebookController {
     @RequestMapping(value = "/json", produces = "application/json", method=RequestMethod.GET)
     public @ResponseBody String helloFacebookJSON(Model model) {
     	RestTemplate restTemplate = new RestTemplate();
-    	//return restTemplate.getForObject("https://www.facebook.com/feeds/page.php?id=504848586256055&format=json", Page.class).toString();
-    	return restTemplate.getForObject("https://www.facebook.com/feeds/page.php?id=504848586256055&format=json", Page.class).getEntries().get(0).getContent();
+ 
+    	String url = "https://graph.facebook.com/504848586256055/feed?key=value&access_token=";
+    	Feed feed = restTemplate.getForObject(url, Feed.class);
+    	return feed.toString();
+  
+    }
+    
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Feed {
+    	public Feed(){}
+    	
+    	private List <Data> data;
+    	private Paging paging;
+		public List<Data> getData() {
+			return data;
+		}
+		public void setData(List<Data> data) {
+			this.data = data;
+		}
+		public Paging getPaging() {
+			return paging;
+		}
+		public void setPaging(Paging paging) {
+			this.paging = paging;
+		}
+		@Override
+		public String toString() {
+			return "Feed [data=" + data + ", paging=" + paging + "]";
+		}
+    	
+    }
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Paging {
+    	String previous;
+    	String next;
+		public String getPrevious() {
+			return previous;
+		}
+		public void setPrevious(String previous) {
+			this.previous = previous;
+		}
+		public String getNext() {
+			return next;
+		}
+		public void setNext(String next) {
+			this.next = next;
+		}
+		@Override
+		public String toString() {
+			return "Paging [previous=" + previous + ", next=" + next + "]";
+		}
+    	
+    }
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Data {
+    	public Data(){}
+    	
+    	String id;
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		@Override
+		public String toString() {
+			return "Data [id=" + id + "]";
+		}
+    	
+    
     }
     
     @JsonIgnoreProperties(ignoreUnknown = true)
