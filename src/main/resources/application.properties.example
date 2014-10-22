@@ -1,5 +1,6 @@
 server.contextPath=/lytra
 server.port=8080
 spring.thymeleaf.cache=false
+facebook.page.id=
 facebook.app.id=
 facebook.app.secret=
