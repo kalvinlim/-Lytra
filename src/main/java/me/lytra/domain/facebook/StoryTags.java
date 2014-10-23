@@ -3,10 +3,9 @@ package me.lytra.domain.facebook;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-
-public class StoryTag {
+public class StoryTags {
 	
-	public StoryTag(){}
+	public StoryTags(){}
 	
 	private String id;
 	private String name;

@@ -1,9 +1,11 @@
 package me.lytra.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import me.lytra.domain.user.User;
 import me.lytra.persistence.service.BlogService;
 import me.lytra.persistence.service.GridFsService;
 import me.lytra.persistence.service.UserService;
@@ -46,12 +48,15 @@ public class MainController {
 		mav.setViewName("test");
 		return mav;	
 	}
-
+    
     @RequestMapping(value="/test", method=RequestMethod.GET)
-	public @ResponseBody String handleTest(HttpSession session) {
-    	logger.info("FOO");
-    	return "Foo";
+	public ModelAndView handleTest(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("test");
+		return mav;	
 	}
+
+
 	@RequestMapping("/gallery")
 	public ModelAndView handleRequestGallery() {
 		ModelAndView mav = new ModelAndView();
@@ -73,8 +78,8 @@ public class MainController {
 	public ModelAndView handleRequestBlog() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("blog");
-		mav.addObject("posts", blogService.findAll());
-		mav.addObject("active", "blog");
+		//mav.addObject("posts", blogService.findAll());
+		//mav.addObject("active", "blog");
 		return mav;
 	}
 	@RequestMapping(value="/photos", method=RequestMethod.GET)

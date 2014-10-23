@@ -48,9 +48,9 @@ public class FacebookController {
     	url = String.format(url, facebookAppId, facebookAppSecret);
     	
     	logger.info(url);
-    	//Feed feed = restTemplate.getForObject(url, Feed.class);
+    	Feed feed = restTemplate.getForObject(url, Feed.class);
     	String foo = restTemplate.getForObject(url, String.class);
-    	return foo;
+    	return feed.toString();
   
     }   
 }
