@@ -45,7 +45,7 @@ public class MainController {
 	public ModelAndView handleIndex(HttpSession session) {
     	logger.info("Index accessed");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("test");
+		mav.setViewName("index");
 		return mav;	
 	}
     
