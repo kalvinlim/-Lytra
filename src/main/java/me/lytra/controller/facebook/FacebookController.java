@@ -1,6 +1,7 @@
 package me.lytra.controller.facebook;
 
 import me.lytra.domain.facebook.Feed;
+import me.lytra.domain.facebook.Lytra;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/facebook")
 public class FacebookController {
 	static Logger logger = LoggerFactory.getLogger(FacebookController.class);
+	
+	@Value("${facebook.page.id}")
+	private String facebookPageId;
 	
 	@Value("${facebook.app.id}")
 	private String facebookAppId;
@@ -39,7 +43,18 @@ public class FacebookController {
     	//mav.addObject("content", content);
     	return mav;
     }
-    
+
+    @RequestMapping(value = "/about/json", produces = "application/json", method=RequestMethod.GET)
+    public @ResponseBody String helloFacebookAboutJSON(Model model) {
+    	RestTemplate restTemplate = new RestTemplate();
+ 
+    	String url = "https://graph.facebook.com/%s";
+    	url = String.format(url, facebookPageId);
+    	
+    	Lytra lytra = restTemplate.getForObject(url, Lytra.class);
+    	return lytra.toString();
+  
+    }   
     @RequestMapping(value = "/json", produces = "application/json", method=RequestMethod.GET)
     public @ResponseBody String helloFacebookJSON(Model model) {
     	RestTemplate restTemplate = new RestTemplate();
