@@ -222,53 +222,56 @@ footer .glyphicon:hover {
 	<!-- fourth section - Information -->
 	<div id="information" class="pad-section">
 		<div class="container">
-			<div class="row">
+		
+			<div class="row" th:each="data : ${feed.data}">
 				<div class="col-sm-6">
-					<div class="panel panel-default">
-						<div class="panel-body lead">For us, it started at the
-							moment when a tea ceremony was witness. There was so much culture
-							ingrained in the rituals, all the colours involved in the
-							process, and the tedious practice of following custom. The idea
-							of old and new, coupled with the client's personality is what
-							excited us. Whether it be through photography or wedding
-							planning, we are here to serve you.</div>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="panel panel-default">
-						<div class="panel-body lead">
-							<p>Living in a world where we get instant gratification,
-								Lytra is here to make that process as simple as possible.
-								Simple... like a cup of tea.</p>
-						</div>
+					<div class="well">
+						<p th:if="${data.story} != null" th:text="${data.story}" th:remove="tag" />
+						<p th:if="${data.name} != null" th:text="${data.name}" th:remove="tag" />
 					</div>
 				</div>
 			</div>
+		
+		
+			
 		</div>
 	</div>
 	<!-- /fourth section -->
 	<!-- fifth section -->
 	<div id="services" class="pad-section">
 		<div class="container">
-			<div class="text-center pull-left" style="margin:20px;">
-				<img class="img-responsive center-block" src="img/alpha/lytra-cup.png" style="max-width: 300px;"/>	
-			</div>	
-			<div class="text-center pull-left">	
-				<h4 class="foobar">Stay connected with Lytra</h4> 
-				<img src="img/alpha/facebook.png" style="max-width:50px;"/>	 					
-				<img src="img/alpha/g+icon.png" style="max-width:50px;"/>
-				<img src="img/alpha/twitter-bird-white-on-blue.png" style="max-width:50px;"/>
-				<img src="img/alpha/pinterest_badge_white.png" style="max-width:50px;"/>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="text-center">
+						<img class="img-responsive center-block" src="img/alpha/lytra-cup.png" style="max-width: 300px;"/>	
+					</div>
+				</div>
+				<div class="col-sm-4">
+				<div class="text-center">	
+					<h4 class="foobar">Stay connected with Lytra</h4> 
+						<img src="img/alpha/facebook.png" style="max-width:50px;"/>	 					
+						<img src="img/alpha/g+icon.png" style="max-width:50px;"/>
+						<img src="img/alpha/twitter-bird-white-on-blue.png" style="max-width:50px;"/>
+						<img src="img/alpha/pinterest_badge_white.png" style="max-width:50px;"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="text-center pull-left">
+						<h4>For us, it started at the moment when a tea ceremony was
+							witness. There was so much culture ingrained in the rituals, all
+							the colours involved in the process, and the tedious practice of
+							following custom. The idea of old and new, coupled with the
+							client's personality is what excited us. Whether it be through
+							photography or wedding planning, we are here to serve you.
+						</h4>
+						<h4>Living in a world where we get instant gratification,
+							Lytra is here to make that process as simple as possible.
+							Simple... like a cup of tea.</h4>
+					</div>
+				</div>
 			</div>
-			<div class="text-center pull-left">
-				<h4>For us, it started at the moment when a tea ceremony was
-					witness. There was so much culture ingrained in the rituals, all
-					the colours involved in the process, and the tedious practice of
-					following custom. The idea of old and new, coupled with the
-					client's personality is what excited us. Whether it be through
-					photography or wedding planning, we are here to serve you.
-				</h4>
-			</div>
+				
+	
 
 
 

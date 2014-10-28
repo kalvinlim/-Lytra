@@ -1,24 +1,21 @@
 package me.lytra.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import me.lytra.domain.user.User;
+import me.lytra.domain.facebook.Feed;
 import me.lytra.persistence.service.BlogService;
 import me.lytra.persistence.service.GridFsService;
 import me.lytra.persistence.service.UserService;
+import me.lytra.service.facebook.LytraFacebookService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -34,6 +31,9 @@ public class MainController {
 	
 	@Autowired
 	private GridFsService gridFsService;
+	
+	@Autowired
+	private LytraFacebookService lytraFacebookService;
 	
 /*	@RequestMapping("/greeting")
 	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
@@ -52,6 +52,8 @@ public class MainController {
     @RequestMapping(value="/test", method=RequestMethod.GET)
 	public ModelAndView handleTest(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		Feed feed = lytraFacebookService.getFeed();
+		mav.addObject("feed", feed);
 		mav.setViewName("test");
 		return mav;	
 	}
