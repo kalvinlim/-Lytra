@@ -224,11 +224,17 @@ footer .glyphicon:hover {
 		<div class="container">
 		
 			<div class="row" th:each="data : ${feed.data}">
-				<div class="col-sm-6">
-					<div class="well">
+				<div class="col-sm-8">
+					<img src="${pimgurl}" class="img-responsive img-rounded" />
+					<div th:if="${data.story} != null" class="well">
 						<p th:if="${data.story} != null" th:text="${data.story}" th:remove="tag" />
-						<p th:if="${data.name} != null" th:text="${data.name}" th:remove="tag" />
+						
 					</div>
+					<div th:if="${data.name} != null" class="well">
+						<p th:if="${data.name} != null" th:text="${data.name}" th:remove="tag" />
+						
+					</div>
+					
 				</div>
 			</div>
 		

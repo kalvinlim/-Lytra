@@ -53,6 +53,8 @@ public class MainController {
 	public ModelAndView handleTest(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Feed feed = lytraFacebookService.getFeed();
+		String profileImageUrl = lytraFacebookService.getProfileImageUrl();
+		mav.addObject("pimgurl", profileImageUrl);
 		mav.addObject("feed", feed);
 		mav.setViewName("test");
 		return mav;	
