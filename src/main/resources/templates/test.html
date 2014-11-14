@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="css/owl.carousel.css" />
 <link rel="stylesheet" href="css/owl.theme.css" />
 <link rel="stylesheet" href="css/owl.transitions.css" />
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.css" rel="stylesheet" /> <!-- 3 KB -->
+
 <style>
 /* general styles */
 html, body {
@@ -83,19 +85,19 @@ html, body {
 	border: 2px solid #FFFFFF;
 	border-radius: 50%;
 	display: inline-block;
-	font-size: 60px;
-	height: 140px;
-	line-height: 140px;
+	font-size: 30px;
+	height: 70px;
+	line-height: 70px;
 	text-align: center;
 	vertical-align: middle;
-	width: 140px;
+	width: 70px;
 }
 
 #information {
 	background: url('1980352_713569092050669_3900100014838096590_o.jpg')
 		no-repeat center center fixed;
 	display: table;
-	height: 800px;
+	height: 300px;
 	position: relative;
 	width: 100%;
 	-webkit-background-size: cover;
@@ -193,14 +195,13 @@ footer .glyphicon:hover {
 	<!-- /first section -->
 
 	<!-- second section - About -->
-	<div id="about" class="pad-section"
-		style="background-color: black; color: white;">
+	<div id="services" class="pad-section"	style="background-color: black; color: white;">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
 					<img class="img-responsive" src="logo.png" alt="" />
 				</div>
-				<div class="col-sm-6 text-centerR">
+				<div class="col-sm-6 text-center">
 					<div class="lead">
 						<h2>LyTra was created through an appreciation for tradition
 							and a desire to innovate. Weddings and happiness means something
@@ -208,11 +209,12 @@ footer .glyphicon:hover {
 							you?</h2>
 
 					</div>
-				</div>
-			</div>
+				</div>				
+			</div>			
 		</div>
 	</div>
 	<!-- /second section -->
+
 
 
 
@@ -221,28 +223,55 @@ footer .glyphicon:hover {
 
 	<!-- fourth section - Information -->
 	<div id="information" class="pad-section">
+<!-- 		<div class="fotorama">
+				<img src="10560450_784283401645904_5101054386884725992_o.jpg" />
+				<img src="1980352_713569092050669_3900100014838096590_o.jpg" />
+		</div>  -->
+	</div>
+	<!-- /fourth section -->
+	
+	<div id="blog" class="pad-section">
 		<div class="container">
-		
-			<div class="row" th:each="data : ${feed.data}">
-				<div class="col-sm-8">
-					<img src="${pimgurl}" class="img-responsive img-rounded" />
-					<div th:if="${data.story} != null" class="well">
-						<p th:if="${data.story} != null" th:text="${data.story}" th:remove="tag" />
-						
-					</div>
-					<div th:if="${data.name} != null" class="well">
-						<p th:if="${data.name} != null" th:text="${data.name}" th:remove="tag" />
-						
+			<div class="row text-center">
+				<span class="glyphicon glyphicon-camera"><h2>Photography</h2></span>		
+			</div>
+			
+			<div class="fotorama">
+				<img src="10560450_784283401645904_5101054386884725992_o.jpg" />
+				<img src="1980352_713569092050669_3900100014838096590_o.jpg" />
+			</div>
+ 			<!-- <div class="row" th:each="data,count : ${feed.data}" th:unless="${count.index} > 3"> 								
+				<div class="col-sm-12">
+					
+				<div th:if="${data.story} != null" class="well clearfix">
+						<div class="row">													
+							<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
+							<p th:text="${data.story}" th:remove="tag" class="pull-left"/>							
+						</div>
+						<div class="row">
+							<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
+						</div>						
 					</div>
 					
+					
+					<div th:if="${data.name} != null" class="well clearfix">
+						<div class="row">
+							<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
+							<p th:text="${data.name}" th:remove="tag" class="pull-left"/>
+						</div>
+						<div class="row">
+							<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
+						</div>					
+					</div>
+					
+					
 				</div>
-			</div>
+			</div>  -->
 		
 		
 			
 		</div>
 	</div>
-	<!-- /fourth section -->
 	<!-- fifth section -->
 	<div id="services" class="pad-section">
 		<div class="container">
@@ -295,7 +324,7 @@ footer .glyphicon:hover {
 			
 			<p class="text-right">Copyright &copy; Lytra 2015</p>
 		</div>
-	</footer>
+	</footer> 
 	<!-- /footer -->
 
 
@@ -304,8 +333,9 @@ footer .glyphicon:hover {
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.js"></script> <!-- 16 KB -->
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 		<script>
 		$(function() {

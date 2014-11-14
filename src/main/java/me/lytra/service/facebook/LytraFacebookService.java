@@ -46,7 +46,7 @@ public class LytraFacebookService {
 		RestTemplate restTemplate = new RestTemplate();
 	 	String url = "https://graph.facebook.com/%s/picture";
 		url = String.format(url, facebookPageId);
-		logger.info("{}", restTemplate.getForObject(url, String.class));
+
 		return url;
 	}
 	
