@@ -92,18 +92,30 @@ html, body {
 	vertical-align: middle;
 	width: 70px;
 }
+#blog{
+background: rgb(0,174,255); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(0,174,255,1) 0%, rgba(0,198,216,1) 28%, rgba(0,198,216,1) 73%, rgba(153,220,232,1) 96%, rgba(179,235,249,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,174,255,1)), color-stop(28%,rgba(0,198,216,1)), color-stop(73%,rgba(0,198,216,1)), color-stop(96%,rgba(153,220,232,1)), color-stop(100%,rgba(179,235,249,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00aeff', endColorstr='#b3ebf9',GradientType=0 ); /* IE6-9 */
 
+}
 #information {
-	background: url('1980352_713569092050669_3900100014838096590_o.jpg')
+	background: url('girl-with-camera.jpg')
 		no-repeat center center fixed;
+	background-position: 0px 0px;
 	display: table;
-	height: 300px;
+	height: 100%;;
 	position: relative;
 	width: 100%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	 
 }
 
 #information .panel {
@@ -209,7 +221,7 @@ footer .glyphicon:hover {
 							you?</h2>
 
 					</div>
-				</div>				
+				</div>						
 			</div>			
 		</div>
 	</div>
@@ -223,6 +235,43 @@ footer .glyphicon:hover {
 
 	<!-- fourth section - Information -->
 	<div id="information" class="pad-section">
+		<div class="container">
+			<div class="row text-center">
+				
+					<button type="button" class="btn btn-default btn-lg">						
+  						<span class="glyphicon glyphicon-camera" aria-hidden="true" style="font-size:24px;"></span> 
+  						<span class="" style="font-size:24px;">Photography</span>
+  						<p>Let us photograph your next event</p>
+					</button>
+					<span class="glyphicon glyphicon-camera"> Photography</span> 	
+				
+
+			</div>
+			<div class="row text-center">
+				
+					<button type="button" class="btn btn-default btn-lg">						
+  						<span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size:24px;"></span> 
+  						<span class="" style="font-size:24px;"> Event Planning</span>
+  						<p>Let us plan your next event</p>
+					</button>
+					 	
+				
+
+			</div>
+ 
+			<div class="row text-center">
+				<div class="col-sm-4">
+					<div class="well">
+						<span class="glyphicon glyphicon-camera" aria-hidden="true" style="font-size:24px;"></span> 
+  						<span class="" style="font-size:24px;">Photography</span>
+  					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+	
+	
 <!-- 		<div class="fotorama">
 				<img src="10560450_784283401645904_5101054386884725992_o.jpg" />
 				<img src="1980352_713569092050669_3900100014838096590_o.jpg" />
@@ -232,11 +281,8 @@ footer .glyphicon:hover {
 	
 	<div id="blog" class="pad-section">
 		<div class="container">
-			<div class="row text-center">
-				<span class="glyphicon glyphicon-camera"><h2>Photography</h2></span>		
-			</div>
 			
-			<div class="fotorama">
+			<div class="fotorama"  data-nav="thumbs">
 				<img src="10560450_784283401645904_5101054386884725992_o.jpg" />
 				<img src="1980352_713569092050669_3900100014838096590_o.jpg" />
 			</div>
@@ -282,12 +328,9 @@ footer .glyphicon:hover {
 					</div>
 				</div>
 				<div class="col-sm-4">
-				<div class="text-center">	
-					<h4 class="foobar">Stay connected with Lytra</h4> 
-						<img src="img/alpha/facebook.png" style="max-width:50px;"/>	 					
-						<img src="img/alpha/g+icon.png" style="max-width:50px;"/>
-						<img src="img/alpha/twitter-bird-white-on-blue.png" style="max-width:50px;"/>
-						<img src="img/alpha/pinterest_badge_white.png" style="max-width:50px;"/>
+					<div class="text-center">	
+						<h3>Stay connected with Lytra</h3>						
+						<a href="https://www.facebook.com/lytra.me/" class="btn btn-default btn-lg" role="button"><img src="img/alpha/facebook.png" style="max-width:50px;"/> /Lytra.me</a>
 					</div>
 				</div>
 				<div class="col-sm-4">
@@ -346,5 +389,9 @@ footer .glyphicon:hover {
 		  });
 		});
 	</script>
+	<script type="text/javascript" src="js/skrollr.min.js"></script>
+    <script type="text/javascript">
+    	//var s = skrollr.init();
+    </script>
 </body>
 </html>
