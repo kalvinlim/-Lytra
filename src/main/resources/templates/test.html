@@ -65,14 +65,13 @@ html, body {
 	-o-background-size: cover;
 	background-size: cover;
 }
-
-/* #gallery {
+#gallery {
 	display: table;
 	height: 100%;
 	position: relative;
 	width: 100%;
 }
- */
+
 #about {
 	
 }
@@ -119,7 +118,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00aeff', end
 	 
 }
 #blog {
-	background: url('girl-with-camera.jpg')
+	background: url('1239135_544951902245723_1766546232_o.jpg')
 		no-repeat center center fixed;
 	background-position: 0px 0px;
 	display: table;
@@ -176,7 +175,24 @@ footer .glyphicon:hover {
 </style>
 </head>
 <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : 'your-app-id',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
 
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+	
 	<!--  BODY PAGE CONTENT -->
 	<!-- navigation panel -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -230,7 +246,7 @@ footer .glyphicon:hover {
 				</div>
 				<div class="col-sm-6 text-center">
 					<div class="lead">
-						<h2>LyTra was created through an appreciation for tradition
+						<h2 style="line-height:1.6">LyTra was created through an appreciation for tradition
 							and a desire to innovate. Weddings and happiness means something
 							different to everyone, so why not have something custom made for
 							you?</h2>
@@ -297,7 +313,7 @@ footer .glyphicon:hover {
 			<div class="row" th:each="data,count : ${feed.data}" th:unless="${count.index} > 3"> 								
 				<div class="col-sm-12">
 					
-				<div th:if="${data.story} != null" class="well clearfix">
+<!-- 				<div th:if="${data.story} != null" class="well clearfix">
 						<div class="row">													
 							<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
 							<p th:text="${data.story}" th:remove="tag" class="pull-left"/>							
@@ -305,10 +321,9 @@ footer .glyphicon:hover {
 						<div class="row">
 							<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
 						</div>						
-					</div>
-					
-					
-					<div th:if="${data.name} != null" class="well clearfix">
+					</div> -->
+										
+					<!-- <div th:if="${data.name} != null" class="well clearfix">
 						<div class="row">
 							<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
 							<p th:text="${data.name}" th:remove="tag" class="pull-left"/>
@@ -316,9 +331,9 @@ footer .glyphicon:hover {
 						<div class="row">
 							<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
 						</div>					
-					</div>
+					</div> -->					
 					
-					
+					<div class="fb-post" th:attr="data-href=${data.link}" data-width="500"></div>									
 				</div>
 			</div>
 		</div>
@@ -335,10 +350,11 @@ footer .glyphicon:hover {
 					</div>
 				</div>
 				<div class="col-sm-4">
-					<div class="text-center">	
+					<div style="background-color:white;" class="fb-like-box" data-href="https://www.facebook.com/lytra.me" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+		<!-- 			<div class="text-center">	
 						<h3>Stay connected with Lytra</h3>						
 						<a href="https://www.facebook.com/lytra.me/" class="btn btn-default btn-lg" role="button"><img src="img/alpha/facebook.png" style="max-width:50px;"/> /Lytra.me</a>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-sm-4">
 					<div class="text-center pull-left">
