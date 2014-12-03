@@ -309,33 +309,46 @@ footer .glyphicon:hover {
 	
 	
 	<div id="blog" class="pad-section">
-		<div class="container">
-			<div class="row" th:each="data,count : ${feed.data}" th:unless="${count.index} > 3"> 								
-				<div class="col-sm-12">
-					
-<!-- 				<div th:if="${data.story} != null" class="well clearfix">
-						<div class="row">													
-							<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
-							<p th:text="${data.story}" th:remove="tag" class="pull-left"/>							
-						</div>
-						<div class="row">
-							<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
-						</div>						
-					</div> -->
+		<div class="container text-center">
+		
+		
+		<div th:each="data,count : ${feed.data}" th:unless="${count.index} > 3"  th:remove="tag">
+				<div class="row" th:if="${data.link} != null"> 								
+					<div class="col-sm-12">
+						
+	<!-- 				<div th:if="${data.story} != null" class="well clearfix">
+							<div class="row">													
+								<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
+								<p th:text="${data.story}" th:remove="tag" class="pull-left"/>							
+							</div>
+							<div class="row">
+								<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
+							</div>						
+						</div> -->
+											
+						<!-- <div th:if="${data.name} != null" class="well clearfix">
+							<div class="row">
+								<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
+								<p th:text="${data.name}" th:remove="tag" class="pull-left"/>
+							</div>
+							<div class="row">
+								<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
+							</div>					
+						</div> -->					
+						
+						<div th:if="${data.link} != null" class="fb-post" th:attr="data-href=${data.link}" data-width="500"></div> 
+						
+						<!-- <p th:text="${data.id}" style="color:white;"/>
+						<p th:text="${data.link}" style="color:white;"/> -->
+						<!-- <p th:text="${count.index}" style="color:white;"/>						
+						<br /> asdasdas -->
 										
-					<!-- <div th:if="${data.name} != null" class="well clearfix">
-						<div class="row">
-							<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
-							<p th:text="${data.name}" th:remove="tag" class="pull-left"/>
-						</div>
-						<div class="row">
-							<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
-						</div>					
-					</div> -->					
-					
-					<div class="fb-post" th:attr="data-href=${data.link}" data-width="500"></div>									
+					</div>
 				</div>
+				<br/>
+				
 			</div>
+				
 		</div>
 	</div>
 	
