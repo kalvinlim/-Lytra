@@ -1,237 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8" />
+<meta name="author" content="Script Tutorials" />
+<title>Bootstrap one-page template with Parallax effect | Script
+	Tutorials</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-<title>Lytra</title>
-
+<!-- attach CSS styles -->
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
 <!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="shortcut icon" href="../favicon.ico" />
-<link rel="stylesheet" type="text/css" href="css/style3.css" />
-<link rel="stylesheet" type="text/css" href="css/slider/style.css" />
-<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="css/owl.carousel.css" />
+<link rel="stylesheet" href="css/owl.theme.css" />
+<link rel="stylesheet" href="css/owl.transitions.css" />
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.css" rel="stylesheet" /> <!-- 3 KB -->
+
+<style>
+/* general styles */
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+/* padded section */
+.pad-section {
+	padding: 50px 0;
+}
+
+.pad-section img {
+	width: 100%;
+}
+
+/* vertical-centered text */
+.text-vcenter {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.text-vcenter h1 {
+	font-size: 4.5em;
+	font-weight: 700;
+	margin: 0;
+	padding: 0;
+}
+
+/* additional sections */
+#about {
+	background: url('10560450_784283401645904_5101054386884725992_o.jpg')
+		no-repeat center center fixed;
+	/* background-position: 0px 0px; */
+	display: table;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#gallery {
+	display: table;
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+
+#contact {
+	background-color: #4AABFF;
+	color: #ffffff;
+}
+
+#contact .glyphicon {
+	border: 2px solid #FFFFFF;
+	border-radius: 50%;
+	display: inline-block;
+	font-size: 30px;
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	vertical-align: middle;
+	width: 70px;
+}
+#gallery{
+background: rgb(0,174,255); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(0,174,255,1) 0%, rgba(0,198,216,1) 28%, rgba(0,198,216,1) 73%, rgba(153,220,232,1) 96%, rgba(179,235,249,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,174,255,1)), color-stop(28%,rgba(0,198,216,1)), color-stop(73%,rgba(0,198,216,1)), color-stop(96%,rgba(153,220,232,1)), color-stop(100%,rgba(179,235,249,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,174,255,1) 0%,rgba(0,198,216,1) 28%,rgba(0,198,216,1) 73%,rgba(153,220,232,1) 96%,rgba(179,235,249,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00aeff', endColorstr='#b3ebf9',GradientType=0 ); /* IE6-9 */
+
+}
+#information {
+	background: url('girl-with-camera.jpg')
+		no-repeat center center fixed;
+	background-position: 0px 0px;
+	display: table;
+	height: 100%;;
+	position: relative;
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	 
+}
+#blog {
+	background: url('1239135_544951902245723_1766546232_o.jpg')
+		no-repeat center center fixed;
+	background-position: 0px 0px;
+	display: table;
+	height: 100%;;
+	position: relative;
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	 
+}
+
+#information .panel {
+	opacity: 0.85;
+}
+
+
+
+footer {
+	padding: 20px 0;
+}
+
+footer .glyphicon {
+	color: #333333;
+	font-size: 60px;
+}
+
+footer .glyphicon:hover {
+	color: #306d9f;
+}
+
+
+</style>
 </head>
-
 <body>
-	<div class="wrapper">
-		<div class="box">
-			<div class="row">
-				<div class="navbar navbar-inverse navbar-fixed-top"
-					role="navigation">
-					<div class="container">
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '650771954994456',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
 
-						<!-- Nav Bar -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle"
-								data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-									class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="/lytra">Lytra</a>
-						</div>
-						<div class="navbar-collapse collapse">
-							<ul class="nav navbar-nav">
-								<li id="home" class="${active == 'home' ? 'active' : ''}"><a
-									href="/lytra">Home</a></li>
-								<li id="about" class="${active == 'about' ? 'active' : ''}"><a
-									href="/lytra/about">About</a></li>
-								<li id="services"
-									class="${active == 'services' ? 'active' : ''}"><a
-									href="#">Services</a></li>
-								<li id="gallery" class="${active == 'gallery' ? 'active' : ''}"><a
-									href="/lytra/gallery">Gallery</a></li>
-								<li id="blog" class="${active == 'blog' ? 'active' : ''}"><a
-									href="/lytra/blog">Blog</a></li>
-								<li id="contacts"
-									class="${active == 'contacts' ? 'active' : ''}"><a
-									href="#">Contacts</a></li>
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+	
+	<!--  BODY PAGE CONTENT -->
+	<!-- navigation panel -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#navbar-collapse-main">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Lytra.me</a>
+			</div>
 
-								<li><a href="/lytra/dashboard" th:if="${session.USER_OBJECT} != null and ${session.USER_OBJECT.admin}">Dashboard</a></li>
+			<div class="collapse navbar-collapse" id="navbar-collapse-main">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="#services">Services</a></li>
+					<li><a href="#gallery">Gallery</a></li>
+					<li><a href="#blog">Blog</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li><a href="#about">Retrieve Photos</a></li>
+					
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
 
-
-								<li id="contacts"
-									class="${active == 'contacts' ? 'active' : ''}"><a
-									href="/lytra/photos"
-									th:if="${session.USER_OBJECT} != null and ${session.USER_OBJECT.photos} > 0">My
-										Photos</a></li>
-
-							</ul>
-							<ul class="nav navbar-nav">
-
-								<!-- <li><a href="#">Logged in as: ${sessionScope.USER_OBJECT.username}</a></li> -->
-								<li><a href="#" th:if="${session.USER_OBJECT} != null" th:text="'Welcome : '+${session.USER_OBJECT.username}" /></li>
-								<!-- <p th:if="${session.USER_OBJECT} != null" th:text="${session.USER_OBJECT.admin}" />  -->
-								<li class="active" th:if="${session.USER_OBJECT} != null"><a href="/logout">Logout</a></li>
-
-							</ul>
-							<c:if test="${sessionScope.USER_OBJECT eq null}">
-								<form class="navbar-form navbar-right" role="form"
-									onsubmit="return false;" id="login-form"
-									th:if="${session.USER_OBJECT} == null">
-									<div class="form-group">
-										<input type="text" placeholder="Email" class="form-control"
-											name="username" />
-									</div>
-									<div class="form-group">
-										<input type="password" placeholder="Password"
-											class="form-control" name="password" />
-									</div>
-									<button type="submit" class="btn btn-success" id="login-submit">Sign
-										in</button>
-								</form>
-							</c:if>
-						</div>
-						<!--/.navbar-collapse -->
-					</div>
+	<!-- first section - Home -->
+	<div id="about" class="about">
+		<div class="text-vcenter">
+			<div class="col-sm-offset-3 col-sm-6">
+				<div class="welll clearfix" style="color: white; background-color: rgba(0, 0, 0, 0.80); padding: 10px 10px 10px 10px;">																			
+					<h1>Lytra is simple...</h1>
+					<h1>like a cup of tea</h1>				
 				</div>
-				<!-- sidebar -->
-				<div class="column col-sm-2 opaqueOff" id="sidebar">
-					<ul class="nav">
-						<li><img src="img/alpha/logo.png" class="img-responsive"
-							alt="Responsive image" /></li>
-						<li>
-							<div class="text-center opaqueOff">
-								<h2>(513) 445 - 9872</h2>
-							</div>
-
-						</li>
-
-						<li class="center-block">
-							<div>
-								<a href="https://www.facebook.com/lytra.me" target="_blank">
-									<img src="img/alpha/facebook_white.png" alt=""
-									class="socialMediaButtonGeneral opaque pull-left" />
-								</a>
-							</div>
-							<div>
-								<a href="#" target="_blank"><img
-									src="img/alpha/twitter-bird-white-on-blue.png" alt=""
-									class="socialMediaButtonGeneral opaque pull-left" /></a>
-							</div>
-							<div>
-								<a href="#" target="_blank"><img
-									src="img/alpha/pinterest_badge_white.png" alt=""
-									class="socialMediaButtonGeneral opaque pull-left" /></a>
-							</div>
-							<div>
-								<a href="#" target="_blank"><img src="img/alpha/g+icon.png"
-									alt="" class="socialMediaButtonGeneral opaque pull-left" /></a>
-							</div>
-							<div>
-								<a href="#" target="_blank"><img
-									src="img/alpha/InBug-60px-TM.png" alt=""
-									class="socialMediaButtonLinkedIn opaque pull-left " /></a>
-							</div>
-
-						</li>
-
-					</ul>
-
-					<ul class="nav hidden-xs" id="sidebar-footer">
-						<li><img src="img/alpha/lytra-cup.png"
-							class="lytra-cup opaque" alt="Responsive image" /></li>
-					</ul>
-				</div>
-				<!-- /sidebar -->
-				<!-- 
-<div class="sidebar opaque black left clearfix">
-	<div>
-		<img src="img/alpha/lytra-cup.png" alt=""
-			class="lytra-cup" />
-	</div>
-	<div class="number opaqueOff">(513) 445 - 9872</div>
-	<div class="socialMediaButtons clearfix">
-		<div>
-			<a href="https://www.facebook.com/lytra.me" target="_blank"><img
-				src="img/alpha/facebook_white.png" alt=""
-				class="socialMediaButtonGeneral opaqueOff left" /></a>
-		</div>
-		<div>
-			<a href="#" target="_blank"><img
-				src="img/alpha/twitter-bird-white-on-blue.png" alt=""
-				class="socialMediaButtonGeneral opaqueOff left" /></a>
-		</div>
-		<div>
-			<a href="#" target="_blank"><img
-				src="img/alpha/pinterest_badge_white.png" alt=""
-				class="socialMediaButtonGeneral opaqueOff left" /></a>
-		</div>
-		<div>
-			<a href="#" target="_blank"><img src="img/alpha/g+icon.png"
-				alt="" class="socialMediaButtonGeneral opaqueOff left" /></a>
-		</div>
-		<div>
-			<a href="#" target="_blank"><img
-				src="img/alpha/InBug-60px-TM.png" alt=""
-				class="socialMediaButtonLinkedIn opaqueOff left" /></a>
-		</div>
-	</div>
-	<div>
-		<img src="img/alpha/logo.png" alt="" class="logo" />
-	</div>
-</div> -->
-				<!-- main -->
-				<div class="column col-sm-10" id="main">
-				<ul class="cb-slideshow">
-						<li><span>Image 01</span>
-							<div>
-								<!-- <h3>re·lax·a·tion</h3> -->
-							</div></li>
-						<li><span>Image 02</span>
-							<div>
-								<!-- <h3>qui·e·tude</h3> -->
-							</div></li>
-						<li><span>Image 03</span>
-							<div>
-								<!-- <h3>bal·ance</h3> -->
-							</div></li>
-						<li><span>Image 04</span>
-							<div>
-								<!-- <h3>e·qua·nim·i·ty</h3> -->
-							</div></li>
-						<li><span>Image 05</span>
-							<div>
-								<!-- <h3>com·po·sure</h3> -->
-							</div></li>
-						<li><span>Image 06</span>
-							<div>
-							<!-- 	<h3>se·ren·i·ty</h3> -->
-							</div></li>
-					</ul> 
-					<!-- /padding -->
-					<div class="padding">
-						<!-- body content here -->
-						<!-- /body content here -->
-					</div>
-					<!-- /padding -->
-				</div>
-				<!-- /main -->
 			</div>
 		</div>
 	</div>
-	<!-- /.container -->
+	<!-- /first section -->
 
+	<!-- second section - About -->
+	<div id="services" class="pad-section"	style="background-color: black; color: white;">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<img class="img-responsive" src="logo.png" alt="" />
+				</div>
+				<div class="col-sm-6 text-center">
+					<div class="lead">
+						<h2 style="line-height:1.6">LyTra was created through an appreciation for tradition
+							and a desire to innovate. Weddings and happiness means something
+							different to everyone, so why not have something custom made for
+							you?</h2>
+
+					</div>
+				</div>						
+			</div>			
+		</div>
+	</div>
+	<!-- /second section -->
+
+
+
+
+	<!-- /first section -->
+
+
+	<!-- fourth section - Information -->
+	<div id="information" class="pad-section">
+		<div class="container">
+
+ 
+			<div class="row text-centerr">
+				<div class="col-sm-4" style="margin-bottom:20px;margin-top:90px;">
+					<div class="welll clearfix" style="color: white; background-color: rgba(0, 0, 0, 0.80); padding: 10px 10px 10px 10px;">
+						<div class="glyphicon glyphicon-camera pull-left" aria-hidden="true" style="font-size:60px; margin-right:30px; margin-left:18px; line-height:92px;"></div> 
+  						<div class="pull-left">
+  							<h3>Photography</h3>
+  							<p>Let us photograph your next event</p>
+  						</div>
+  					</div>
+				</div>				
+			</div>
+			<div class="row text-centerr">
+				<div class="col-sm-4">
+					<div class="welll clearfix" style="color: white; background-color: rgba(0, 0, 0, 0.80); padding: 10px 10px 10px 10px;">
+						<div class="glyphicon glyphicon-pencil pull-left" aria-hidden="true" style="font-size:60px; margin-right:30px; margin-left:18px; line-height:92px;"></div> 
+  						<div class="pull-left">
+  							<h3>Event Planning</h3>
+  							<p>Let us plan your next event</p>
+  						</div>
+  					</div>
+				</div>				
+			</div>
+		</div>
+	
+	
+	
+	</div>
+	<!-- /fourth section -->
+	
+	<div id="gallery" class="pad-section">
+		<div class="container">
+			<div class="fotorama"  data-nav="thumbs" style="margin-top:30px; margin-bottom:30px;">
+				<img src="10560450_784283401645904_5101054386884725992_o.jpg" />
+				<img src="1980352_713569092050669_3900100014838096590_o.jpg" />
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="blog" class="pad-section">
+		<div class="container text-center">
+		
+		<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+						<div class="well">Most recent facebook activity</div>
+					</div>
+					
+		</div>
+		<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+						<div class="welll clearfix" style="color: white; background-color: rgba(0, 0, 0, 0.80); padding: 10px 10px 10px 10px;">
+							<div class="glyphicon glyphicon-comment pull-left" aria-hidden="true" style="font-size:60px; margin-right:30px; margin-left:18px; line-height:92px;"></div> 
+	  						<div class="pull-left">
+	  							<h3>Facebook</h3>
+	  							
+	  						</div>
+	  					</div>
+
+					</div>
+					
+		</div>
+		
+		<div th:each="data,count : ${feed.data}" th:unless="${count.index} > 3"  th:remove="tag">
+				
+				<div class="row" th:if="${data.link} != null"> 								
+					<div class="col-sm-12">
+						
+	<!-- 				<div th:if="${data.story} != null" class="well clearfix">
+							<div class="row">													
+								<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
+								<p th:text="${data.story}" th:remove="tag" class="pull-left"/>							
+							</div>
+							<div class="row">
+								<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
+							</div>						
+						</div> -->
+											
+						<!-- <div th:if="${data.name} != null" class="well clearfix">
+							<div class="row">
+								<img th:src="${pimgurl}" class="img-responsive img-rounded pull-left" style="max-width:50px; margin-right: 8px;"/>
+								<p th:text="${data.name}" th:remove="tag" class="pull-left"/>
+							</div>
+							<div class="row">
+								<img th:if="${data.picture} != null" th:src="${data.picture}" class="img-responsive img-rounded pull-left" style="max-width:100px; margin-left: 58px;"/>
+							</div>					
+						</div> -->					
+						
+						<div th:if="${data.link} != null" class="fb-post" th:attr="data-href=${data.link}" data-width="500"></div> 
+						
+						<!-- <p th:text="${data.id}" style="color:white;"/>
+						<p th:text="${data.link}" style="color:white;"/> -->
+						<!-- <p th:text="${count.index}" style="color:white;"/>						
+						<br /> asdasdas -->
+										
+					</div>
+				</div>
+				<br/>
+				
+			</div>
+				
+		</div>
+	</div>
+	
+	
+	<!-- fifth section -->
+	<div id="contact" class="pad-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="text-center">
+						<img class="img-responsive center-block" src="img/alpha/lytra-cup.png" style="max-width: 300px;"/>	
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div style="background-color:white;" class="fb-like-box" data-href="https://www.facebook.com/lytra.me" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+		<!-- 			<div class="text-center">	
+						<h3>Stay connected with Lytra</h3>						
+						<a href="https://www.facebook.com/lytra.me/" class="btn btn-default btn-lg" role="button"><img src="img/alpha/facebook.png" style="max-width:50px;"/> /Lytra.me</a>
+					</div> -->
+				</div>
+				<div class="col-sm-4">
+					<div class="text-center pull-left">
+						<h4>For us, it started at the moment when a tea ceremony was
+							witness. There was so much culture ingrained in the rituals, all
+							the colours involved in the process, and the tedious practice of
+							following custom. The idea of old and new, coupled with the
+							client's personality is what excited us. Whether it be through
+							photography or wedding planning, we are here to serve you.
+						</h4>
+						<h4>Living in a world where we get instant gratification,
+							Lytra is here to make that process as simple as possible.
+							Simple... like a cup of tea.</h4>
+					</div>
+				</div>
+			</div>
+				
 	
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+		</div>
+	</div>
+	<!-- /fifth section -->
+
+
+
+	<!-- footer -->
+	<footer>
+		<hr />
+		<div class="container">
+			
+			<p class="text-right">Copyright &copy; Lytra 2015</p>
+		</div>
+	</footer> 
+	<!-- /footer -->
+
+
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.js"></script> <!-- 16 KB -->
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+		<script>
+		/* $(function() {
+		  $("#gallery").owlCarousel({
+			  slideSpeed: 300,
+			  paginationSpeed: 400,
+			  singleItem: true
+		  });
+		}); */
+	</script>
+	<script type="text/javascript" src="js/skrollr.min.js"></script>
+    <script type="text/javascript">
+    	//var s = skrollr.init();
+    </script>
 </body>
-<script>
-	$(function() {
-    	$("#login-submit").click(function(){
-    		var loginForm = $("#login-form").serializeArray();
-    		console.log(loginForm);
-    		//console.log($("#newPostForm").serializeArray());
-     		$.post( "/lytra/login", loginForm, function( data ) {
-     			location.reload(); 
-			});
-    		 
-    	});
-	});
-</script>
 </html>

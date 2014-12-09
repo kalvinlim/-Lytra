@@ -41,22 +41,22 @@ public class MainController {
 		return "greeting";
 	}*/
 
-    @RequestMapping(value="/", method=RequestMethod.GET)
+    @RequestMapping(value="/indexold", method=RequestMethod.GET)
 	public ModelAndView handleIndex(HttpSession session) {
     	logger.info("Index accessed");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
+		mav.setViewName("indexold");
 		return mav;	
 	}
     
-    @RequestMapping(value="/test", method=RequestMethod.GET)
+    @RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView handleTest(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Feed feed = lytraFacebookService.getFeed();
 		String profileImageUrl = lytraFacebookService.getProfileImageUrl();
 		mav.addObject("pimgurl", profileImageUrl);
 		mav.addObject("feed", feed);
-		mav.setViewName("test");
+		mav.setViewName("index");
 		return mav;	
 	}
 
