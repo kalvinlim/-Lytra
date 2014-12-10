@@ -117,13 +117,17 @@ public class GridFsServiceTest {
 		String userid = "53ffe8ea8d598e24fa67d190";
 		logger.info("photo ids: {}", gridFsService.getGridFSDBPhotoIdsByUserId(userid));
 	}
-	@Test
+	@Ignore @Test
 	public void testGetGridFSDBPhotoCountByUserId(){
 		String userid = "53ffe8ea8d598e24fa67d190";
 		Integer size = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))).size();
 		
 		logger.info("Size: {}", size);
 		 
+	}
+	
+	public void testClient(){
+		
 	}
 	
 }

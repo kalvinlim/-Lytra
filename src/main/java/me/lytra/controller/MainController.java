@@ -86,7 +86,7 @@ public class MainController {
 		//mav.addObject("active", "blog");
 		return mav;
 	}
-	@RequestMapping(value="/photos", method=RequestMethod.GET)
+/*	@RequestMapping(value="/photos", method=RequestMethod.GET)
 	public ModelAndView handleRequestPhotos(HttpSession session) {
 		if(session.getAttribute("USER_OBJECT") == null){
 			return new ModelAndView("redirect:/lytra");
@@ -99,7 +99,7 @@ public class MainController {
 		mav.addObject("files", fileIdList);
 
 		return mav;
-	}
+	}*/
 
 /*	@RequestMapping(value = "/json", produces = "application/json")
 	public @ResponseBody

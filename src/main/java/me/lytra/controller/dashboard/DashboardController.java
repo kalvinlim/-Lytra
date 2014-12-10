@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import me.lytra.domain.client.Client;
 import me.lytra.domain.user.User;
 import me.lytra.persistence.service.BlogService;
+import me.lytra.persistence.service.ClientService;
 import me.lytra.persistence.service.GridFsService;
 import me.lytra.persistence.service.UserService;
 
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -32,9 +33,13 @@ public class DashboardController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired private ClientService clientService;
+	
 	@Autowired
 	private GridFsService gridFsService;
 
+	private String BASE_URL = "http://localhost:1337/lytra/";
+	
 	@RequestMapping
 	public ModelAndView handleRequestDashboard(HttpSession session) {
 		if(session.getAttribute("USER_OBJECT") == null){
@@ -46,11 +51,15 @@ public class DashboardController {
 			return new ModelAndView("redirect:/");
 		}	
 		List<User> users = userService.findAllWithGalleryCount();
+		List<Client> clients = clientService.findAll();
+	
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("dashboard");
 		mav.addObject("users", users);
+		mav.addObject("clients", clients);
 		mav.addObject("user", new User());
+		mav.addObject("baseurl", BASE_URL);
 	
 		return mav;
 	}

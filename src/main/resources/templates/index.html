@@ -151,7 +151,7 @@ footer .glyphicon:hover {
 
 </style>
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar">
     <script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -191,7 +191,7 @@ footer .glyphicon:hover {
 					<li><a href="#gallery">Gallery</a></li>
 					<li><a href="#blog">Blog</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li><a href="#about">Retrieve Photos</a></li>
+					<li><a href="/lytra/photos">Retrieve Photos</a></li>
 					
 				</ul>
 			</div>
@@ -286,8 +286,12 @@ footer .glyphicon:hover {
 	
 	<div id="blog" class="pad-section">
 		<div class="container text-center">
-		
-		<div class="row">
+		<div class="text-center">	
+						<!-- <h3>Stay connected with Lytra</h3> -->						
+						<a href="https://www.facebook.com/lytra.me/" class="btn btn-default btn-lg" role="button"><img src="img/alpha/facebook.png" style="max-width:50px;"/> /Lytra.me</a>
+			</div>
+			<br />
+		<!-- <div class="row">
 					<div class="col-sm-offset-4 col-sm-4">
 						<div class="well">Most recent facebook activity</div>
 					</div>
@@ -305,7 +309,7 @@ footer .glyphicon:hover {
 
 					</div>
 					
-		</div>
+		</div> -->
 		
 		<div th:each="data,count : ${feed.data}" th:unless="${count.index} > 3"  th:remove="tag">
 				
@@ -381,8 +385,8 @@ footer .glyphicon:hover {
 				</div>
 			</div>
 				
-	
-
+			(513) 445 - 9872
+			staff@lytra.me
 
 
 
