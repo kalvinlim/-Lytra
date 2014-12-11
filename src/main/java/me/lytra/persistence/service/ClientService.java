@@ -27,6 +27,14 @@ public class ClientService {
 	public List<Client> findAll(){
 		return clientRepository.findAll();
 	}
+	public List<Client> findAllWithGalleryCount(){
+		List<Client> clients = clientRepository.findAll();
+		for(Client client : clients){
+			Integer count = gridFsService.getGridFSDBPhotoCountByClientId(client.getId());
+			client.setPhotos(count);
+		}
+		return clients;
+	}
 	public Client save(Client client){
 		return clientRepository.save(client);
 	}

@@ -32,7 +32,7 @@ public class UserService {
 	public List<User> findAll(){
 		return userRepository.findAll();
 	}
-	public List<User> findAllWithGalleryCount(){
+	/*public List<User> findAllWithGalleryCount(){
 		List<User> users = userRepository.findAll();
 		for(User user : users){
 			Integer count = gridFsService.getGridFSDBPhotoCountByUserId(user.getId());
@@ -42,7 +42,7 @@ public class UserService {
 	}
 	public Integer getPhotoCountByUserId(String userid){
 		return gridFsService.getGridFSDBPhotoCountByUserId(userid);
-	}
+	}*/
 	public User create(User user){
 		String hashedPassword = jbCryptService.hashPassword(user.getPassword());
 		user.setPassword(hashedPassword);
@@ -86,14 +86,14 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 	
-	public User findOneWithGalleryCount(String id){
+/*	public User findOneWithGalleryCount(String id){
 		User user = userRepository.findById(id);
 		
 		Integer count = gridFsService.getGridFSDBPhotoCountByUserId(id);
 		user.setPhotos(count);
 		
 		return user;
-	}
+	}*/
 	/*static Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired

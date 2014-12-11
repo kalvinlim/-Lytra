@@ -1,8 +1,7 @@
-package me.lytra.controller.login;
+package me.lytra.controller;
 
 import javax.servlet.http.HttpSession;
 
-import me.lytra.controller.MainController;
 import me.lytra.domain.user.User;
 import me.lytra.persistence.service.UserService;
 
@@ -16,23 +15,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class LoginController {
+@RequestMapping(value="/admin")
+public class AdminController {
 	static Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@Autowired
 	private UserService userService;
 
-	/*	@RequestMapping(value="login", method=RequestMethod.GET)
-	public ModelAndView handleRequest(){
-		return new ModelAndView();
+
+    @RequestMapping(value="", method=RequestMethod.GET)
+	public ModelAndView handleLogin(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
+		mav.addObject("user", new User());
+		return mav;	
 	}
-	
-	@RequestMapping(value="login", method=RequestMethod.POST)
-	public void handleLogin(HttpSession session, @ModelAttribute User user){
-		logger.info("Session: {}", session);
-	}
-	*/
-	
+    
+    
+
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView loginFoo(HttpSession session, @ModelAttribute User user) {
 		logger.info("login ######################################");
@@ -51,7 +51,7 @@ public class LoginController {
 				session.setAttribute("USER_ADMIN", validUser.isAdmin());
 				logger.info("User admin login successful: {}", session.getAttribute("USER_OBJECT").toString());
 			}
-			return "redirect:/";
+			return "redirect:/dashboard";
 		}
 		
 		else {

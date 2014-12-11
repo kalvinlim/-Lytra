@@ -115,7 +115,7 @@ public class GridFsServiceTest {
 	@Ignore @Test
 	public void testGetGridFSDBPhotoIdsByUserId(){
 		String userid = "53ffe8ea8d598e24fa67d190";
-		logger.info("photo ids: {}", gridFsService.getGridFSDBPhotoIdsByUserId(userid));
+		//logger.info("photo ids: {}", gridFsService.getGridFSDBPhotoIdsByUserId(userid));
 	}
 	@Ignore @Test
 	public void testGetGridFSDBPhotoCountByUserId(){

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import me.lytra.domain.client.Client;
 import me.lytra.domain.user.User;
 
 import org.slf4j.Logger;
@@ -26,26 +27,29 @@ public class GridFsService {
 	static Logger logger = LoggerFactory.getLogger(GridFsService.class);
 	
 	@Autowired
-	GridFsOperations operations;
+	private GridFsOperations operations;
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
-	public void saveOne(MultipartFile file, User user){
+	@Autowired
+	private ClientService clientService;
+	
+	public void saveOne(MultipartFile file, Client client){
 		
 		DBObject metaData = new BasicDBObject();
 		
-		User completedUser = userService.findById(user.getId());
 		
-		metaData.put("username", completedUser.getUsername());
-		metaData.put("userid", completedUser.getId());
+		Client completedClient = clientService.findById(client.getId());
 		
+				
+		metaData.put("clientid", completedClient.getId());
+		metaData.put("clientname", completedClient.getName());
 		
-		
-		
+		logger.info("Attempting to save file into mongodb: {}, with client: {}, metadata: {}", file.getOriginalFilename(), completedClient, metaData);
 		try {
 			operations.store(file.getInputStream(), file.getOriginalFilename(), metaData);
-			logger.info("Saved file into mongodb: {}, with user: {}", file.getOriginalFilename(), completedUser);
+			logger.info("Saved file into mongodb: {}, with client: {}", file.getOriginalFilename(), completedClient);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +57,7 @@ public class GridFsService {
 	}
 	
 	public List<GridFSDBFile> getGridFSDBFilesByUserId(String id){
-		List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(id)));
+		List<GridFSDBFile> result = operations.find(new Query().addCriteria(Criteria.where("metadata.clientid").is(id)));
 		return result;
 	}
 	public GridFSDBFile getGridFSDBFileByPhotoId(String id){
@@ -65,9 +69,9 @@ public class GridFsService {
 		logger.info("Photo delete processed for: {}, ", result);
 		operations.delete(new Query().addCriteria(Criteria.where("_id").is(id)));		
 	}
-	public List<String> getGridFSDBPhotoIdsByUserId(String userid){
+	public List<String> getGridFSDBPhotoIdsByClientId(String clientid){
 		
-		List<GridFSDBFile> files = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid)));
+		List<GridFSDBFile> files = operations.find(new Query().addCriteria(Criteria.where("metadata.clientid").is(clientid)));
 		List<String> photoIds = new ArrayList<>();
 		
 		
@@ -80,8 +84,8 @@ public class GridFsService {
 		}
 		return Collections.emptyList();
 	}	
-	public int getGridFSDBPhotoCountByUserId(String userid){
-		Integer count = operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))).size();
+	public int getGridFSDBPhotoCountByClientId(String clientid){
+		Integer count = operations.find(new Query().addCriteria(Criteria.where("metadata.clientid").is(clientid))).size();
 		//logger.info("searching for files with userID: {}", userid);
 		//logger.info("found: {}", operations.find(new Query().addCriteria(Criteria.where("metadata.userid").is(userid))));
 		return count;

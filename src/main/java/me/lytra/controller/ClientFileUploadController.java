@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.lytra.domain.client.Client;
 import me.lytra.domain.user.User;
 import me.lytra.persistence.service.GridFsService;
 import me.lytra.persistence.service.UserService;
@@ -27,9 +28,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mongodb.gridfs.GridFSDBFile;
 
 @Controller
-public class FileUploadController {
+@RequestMapping("/client/")
+public class ClientFileUploadController {
 	
-/*	static Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	static Logger logger = LoggerFactory.getLogger(ClientFileUploadController.class);
 	
 	@Autowired
 	private GridFsService gridFsService;
@@ -47,12 +49,11 @@ public class FileUploadController {
     }
 	
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    //public String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file, @ModelAttribute User user){
-    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file,  @ModelAttribute User user){
+    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file,  @ModelAttribute Client client){
     	String name = file.getOriginalFilename();
   	
-    	if(user.getId().equals("")){
-    		logger.warn("Select valid user: {}", user);
+    	if(client.getId().equals("")){
+    		logger.warn("Select valid client: {}", client);
     		return "redirect:/dashboard/";
     	}
 
@@ -61,12 +62,12 @@ public class FileUploadController {
     			logger.info("Valid. Filename: {}, type: {}", file.getOriginalFilename(), file.getContentType());
     			 try {
     	            	  	                    	              
-    	                gridFsService.saveOne(file, user);
+    	                gridFsService.saveOne(file, client);
     				 
     	                //BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name + "." + extension)));
     	                //stream.write(bytes);
     	                // stream.close();
-    	                logger.info("You successfully uploaded: {}, using userId: {}", name, user.getId());
+    	                logger.info("You successfully uploaded: {}, using userId: {}", name, client.getId());
     	                //logger.info("You successfully uploaded " + name + " into " + name + "." + extension);
     	                //return "You successfully uploaded " + name + " into " + name + "." + extension;
     	                return "redirect:/dashboard";
@@ -117,7 +118,7 @@ public class FileUploadController {
 			e.printStackTrace();
 		}
 	}
-*/
+
 	
 
 }

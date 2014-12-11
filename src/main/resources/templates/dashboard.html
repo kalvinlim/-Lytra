@@ -57,8 +57,11 @@ body {
 
 			</div>
 			<div class="col-sm-offset-3 col-md-offset-2 col-md-9">
+			<h3>Client codes for photography session assets</h3>
 			<table class="table table-striped table-bordered">
+					
 					<tr>
+						<th>Photos</th>
 						<th>Client id</th>
 						<th>Client name</th>
 						<th>created</th>
@@ -69,6 +72,11 @@ body {
 						<th>URL</th>
 					</tr>
 					<tr th:each="c : ${clients}">
+						<th>
+							<a class="btn btn-primary btn-xs" th:href="'/lytra/dashboard/client/upload/'+${c.id}" >Upload Photos</a>
+							<a class="btn btn-primary btn-xs" th:if="${c.photos} > 0" th:href="'/lytra/dashboard/photos/' + ${c.accessCode.code}" th:text="'View Photos ' + '(' + ${c.photos} + ')'"/>
+							<p th:if="${c.photos} == 0" th:remove="tag">No Photos</p>
+						</th>
 						<th th:text="${c.id}" />
 						<th th:text="${c.name}" />
 						<th th:text="${c.created}" />						
@@ -79,13 +87,13 @@ body {
 						<th th:text="${baseurl}+'photos/'+${c.accessCode.code}" />						
 					</tr>					
 			</table>
+			<button class="btn btn-warning" data-toggle="modal" data-target="#createclient">Add Client</button>
 			
-			
-			
-			<table class="table table-striped table-bordered">
+			<h3>Lytra Users/Admins</h3>
+			<table class="table table-striped table-bordered">			
 					<tr>
 						<th>Username</th>
-						<th>Photos</th>
+
 						<th>created</th>
 						<th>deleted</th>
 						<th>admin</th>
@@ -104,14 +112,7 @@ body {
 								<input type="text" value="${u.deleted}" class="deleted hidden" />
 								<input type="text" value="${u.admin}" class="admin hidden" />
 							</th>
-							<th>
-							
-								<a class="btn btn-primary btn-xs" th:if="${u.photos} > 0" th:href="'/lytra/dashboard/user/' + ${u.id}" th:text="'View Photos ' + '(' + ${u.photos} + ')'"/>
-								<p th:if="${u.photos} == 0" th:remove="tag">No Photos</p>
-								
-								<a class="btn btn-primary btn-xs" th:href="'/lytra/dashboard/user/upload/'+${u.id}" >Upload Photo</a>
-								
-							</th>
+			
 							<th th:text="${u.created}" />
 							<th th:text="${u.deleted}" />
 							<th th:text="${u.admin}" />
@@ -156,6 +157,36 @@ body {
 									<div class="form-group">
 										<div class="col-md-3 col-md-offset-3">
 											<button type="submit" class="btn btn-danger">Create User</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!-- create client modal -->
+				<div class="modal fade" id="createclient" tabindex="-1" role="dialog" aria-labelledby="createclient" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Create Client</h4>
+							</div>
+							<div class="modal-body">								
+								<form class="form-horizontal" role="form" method="POST" th:action="@{/dashboard/createclient}" th:object="${client}">
+									<div class="form-group">
+										<label for="username" class="col-md-3">Client Name</label>
+										<div class="col-md-9">
+											<input type="text" th:field="*{name}" class="form-control" id="clientname" placeholder="client name" />
+										</div>
+									</div>									
+									<div class="form-group">
+										<div class="col-md-3 col-md-offset-3">
+											<button type="submit" class="btn btn-danger">Create client</button>
 										</div>
 									</div>
 								</form>
